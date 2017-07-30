@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#b50000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF0000</color>
+    <color name="fontColor">#686A6C</color>
+    <color name="cookColor">#F7F7F7</color>
+    <color name="cookFont">#FF0707</color>
+</resources>

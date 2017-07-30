@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="mapp.com.sg.moiepicer.RecipeDetails"
+    tools:showIn="@layout/activity_recipe_details">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--Recipe image-->
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="360dp"
+            android:layout_height="172dp"
+            app:srcCompat="@android:drawable/btn_star"
+            android:background="@android:color/darker_gray"/>
+
+        <!--Fav, Edit, Add-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--Fav button-->
+            <LinearLayout
+                android:id="@+id/btnDetailsFav"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/borderdetails"
+                android:paddingBottom="7dp"
+                android:paddingRight="5dp">
+
+                <ImageView
+                    android:id="@+id/imageSave"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/fav"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="13dp"/>
+
+                <TextView
+                    android:id="@+id/tvDetailsFav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Favourite"
+                    android:textColor="#5F5F5F"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="12dp"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+
+            <!--Edit-->
+            <LinearLayout
+                android:id="@+id/btnDetailsEdit"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/borderdetails"
+                android:paddingBottom="7dp"
+                android:paddingRight="5dp">
+
+                <ImageView
+                    android:id="@+id/imageEdit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/create"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="13dp"/>
+
+                <TextView
+                    android:id="@+id/tvDetailsEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:textColor="#5F5F5F"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="12dp"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+
+            <!--Add-->
+            <LinearLayout
+                android:id="@+id/btnDetailsAdd"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/borderdetails">
+
+                <ImageView
+                    android:id="@+id/imageAdd"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/add_details"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="12dp"/>
+
+                <TextView
+                    android:id="@+id/tvDetailsAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:textColor="#5F5F5F"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="12dp"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Warning-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageWarning"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/warning"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="13dp"/>
+
+            <TextView
+                android:id="@+id/tvContain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Contain avoided ingredient"
+                android:textColor="#FF0000"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="17dp"/>
+
+            <TextView
+                android:id="@+id/tvContainNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="(1)"
+                android:textColor="#FF0000"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="17dp"/>
+
+            <!--Remove recipe-->
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/removerecipebtn"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="9dp"/>
+
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDetailRec1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipe 1"
+            android:textSize="22dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"/>
+
+        <!--Experience, time, cuisine and cooking type-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageDetailsChef"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/chef_details"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tvDetailsCat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beginner"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="2dp"
+                android:layout_alignTop="@+id/imageDetailsChef"
+                android:textColor="#7A7373"/>
+
+            <ImageView
+                android:id="@+id/imageDetailsTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/time_grey"
+                android:layout_marginTop="65dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/tvDetailsTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Textview"
+                android:layout_marginTop="63dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="#7A7373"/>
+
+            <ImageView
+                android:id="@+id/imageDetailsCuisine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/cuisine_details"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="21dp"/>
+
+            <TextView
+                android:id="@+id/tvDetailsCuisine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chinese"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="200dp"
+                android:textColor="#7A7373"/>
+
+            <ImageView
+                android:id="@+id/imageDetailsCook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/type_details"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="60dp"/>
+
+            <TextView
+                android:id="@+id/tvDetailsCook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Steamed"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="200dp"
+                android:textColor="#7A7373"/>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible" />
+
+        <!--Description-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvDetailsDescTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textSize="17dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/tvDetailsDesc"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="This is my granny’s recipe for a traditional steamed eggs."
+                android:layout_marginTop="43dp"
+                android:layout_marginLeft="12dp"
+                android:textColor="#000000"/>
+
+            <ImageView
+                android:id="@+id/imageDetailsNote"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:srcCompat="@drawable/poststick"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="30dp" />
+
+            <TextView
+                android:id="@+id/tvNotesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageDetailsNote"
+                android:layout_alignStart="@+id/imageDetailsNote"
+                android:layout_alignTop="@+id/tvDetailsDesc"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                android:text="Notes"
+                android:textColor="#000000"/>
+
+            <ImageView
+                android:id="@+id/imageDetailsCircle"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginRight="18dp"
+                app:srcCompat="@drawable/circle"
+                android:layout_alignTop="@+id/tvNotesTitle"
+                android:layout_alignRight="@+id/imageDetailsNote"
+                android:layout_alignEnd="@+id/imageDetailsNote" />
+
+            <ImageButton
+                android:id="@+id/btnEditNote"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_alignEnd="@+id/imageDetailsNote"
+                android:layout_alignRight="@+id/imageDetailsNote"
+                android:layout_below="@+id/tvNotesTitle"
+                android:layout_marginTop="-17dp"
+                android:layout_marginRight="19dp"
+                app:srcCompat="@drawable/editnote"
+                android:background="@android:color/transparent"/>
+
+            <EditText
+                android:id="@+id/editNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Notes go here"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/tvNotesTitle"
+                android:layout_alignStart="@+id/tvNotesTitle"
+                android:layout_marginLeft="3dp"
+                android:layout_marginStart="3dp"
+                android:layout_alignRight="@+id/btnEditNote"
+                android:layout_alignEnd="@+id/btnEditNote" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="1"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible" />
+
+        <!--Ingredient details-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvIngredientTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient"
+                android:textSize="17dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/tvIngredientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spring Onion"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="12dp"
+                android:textColor="#FF0000"/>
+
+            <TextView
+                android:id="@+id/tvIngredientUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="132dp"
+                android:textColor="#FF0000"/>
+
+            <TextView
+                android:id="@+id/tvIngredientType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="plant"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="175dp"
+                android:textColor="#FF0000"/>
+
+            <ImageView
+                android:id="@+id/imageDetailsWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/warning"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="240dp"/>
+
+            <TextView
+                android:id="@+id/tvDetailsAvoided"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avoided"
+                android:textColor="#FF0000"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="270dp"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="1"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible" />
+
+
+        <!--Cookware-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvCookwareDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cookware"
+                android:textSize="17dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/tvCookwareName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Steampot"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="12dp"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/tvCookwareUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="132dp"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/tvCookwareType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textColor="#000000"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="175dp"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="1"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible" />
+
+        <!--Steps-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvStepDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Steps"
+                android:textSize="17dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"/>
+
+            <!--Hard coding video part for now-->
+            <ImageView
+                android:id="@+id/imageStepVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/video"
+                android:layout_marginLeft="22dp"
+                android:layout_below="@+id/tvStepDetails"
+                android:layout_alignLeft="@+id/tvStepDetails"
+                android:layout_alignStart="@+id/tvStepDetails"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="17dp" />
+
+            <TextView
+                android:id="@+id/tvStep1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.Beat egg"
+                android:textColor="#000000"
+                android:layout_marginTop="190dp"
+                android:layout_marginLeft="23dp"/>
+
+            <TextView
+                android:id="@+id/tvStep1Desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beat eggs well with the water/stock. Strain the mixture through a sieve to get rid of the bubbles, into a shallow (mine was about 1/2 inch deep) steam-proof dish."
+                android:textColor="#675E5E"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="7dp"/>
+
+            <TextView
+                android:id="@+id/tvStep2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.Prepare Steamer"
+                android:textColor="#000000"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="23dp"/>
+
+            <TextView
+                android:id="@+id/tvStep2Desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prepare steamer, or for a makeshift one, just set a metal rack over a pot of boiling water, making sure the metal rack is higher than the water level. Place the dish on the rack, covered with a plate (my granny’s style)."
+                android:textColor="#675E5E"
+                android:layout_marginTop="320dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="7dp"/>
+
+            <TextView
+                android:id="@+id/tvStep3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3.Steaming"
+                android:textColor="#000000"
+                android:layout_marginTop="425dp"
+                android:layout_marginLeft="23dp"/>
+
+            <TextView
+                android:id="@+id/tvStep3Desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Turn to low heat, and steam for about 15 min or till set. If you're not sure, shaking the dish a little, it should be jiggly but firm. Uncover halfway first, wait for steam to escape, then fully uncover."
+                android:textColor="#675E5E"
+                android:layout_marginTop="445dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="7dp"/>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

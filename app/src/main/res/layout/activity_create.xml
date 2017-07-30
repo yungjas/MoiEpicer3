@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mapp.com.sg.moiepicer.Create"
+    android:paddingBottom="?android:attr/actionBarSize">
+
+    <LinearLayout
+        android:id="@+id/createLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btnCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/createbtn"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/tvMyRecipe"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="18dp"
+            android:text="My Recipe"
+            android:textColor="#000000"
+            android:textSize="22dp" />/>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="298dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="32dp"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible" />
+
+        <!--Title and delete button-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recipe 1"
+                android:textSize="18dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginTop="25dp"
+                android:textColor="#000000"/>
+
+            <ImageButton
+                android:id="@+id/btnCreateDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/deletebtn"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="22dp"/>
+
+
+        </LinearLayout>
+
+        <!--Recipe layout-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recipe1">
+
+            <ImageView
+                android:id="@+id/imageCreateRecipe"
+                android:layout_width="308dp"
+                android:layout_height="167dp"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/btn_star"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="29dp"
+                android:layout_marginTop="3dp"/>
+
+            <!--Time-->
+            <ImageView
+                android:id="@+id/box1"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/imageCreateRecipe"
+                app:srcCompat="@drawable/rectangle"
+                android:layout_alignLeft="@+id/imageCreateRecipe"
+                android:layout_alignStart="@+id/imageCreateRecipe" />
+
+            <ImageView
+                android:id="@+id/imageCreateTime"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_alignBottom="@+id/box1"
+                android:layout_alignLeft="@+id/imageCreateRecipe"
+                android:layout_alignStart="@+id/imageCreateRecipe"
+                app:srcCompat="@drawable/time"
+                android:layout_marginLeft="9dp"
+                android:layout_marginBottom="7dp"/>
+
+            <TextView
+                android:id="@+id/tvCreateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageCreateTime"
+                android:layout_alignEnd="@+id/box1"
+                android:layout_alignRight="@+id/box1"
+                android:layout_marginEnd="7dp"
+                android:layout_marginRight="6dp"
+                android:text="TextView"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="3dp" />
+
+            <!--fav and add button-->
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_alignLeft="@+id/imageCreateRecipe"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/imageCreateRecipe"
+                app:srcCompat="@drawable/rectangle"
+                android:layout_alignRight="@+id/imageCreateRecipe"
+                android:layout_alignEnd="@+id/imageCreateRecipe" />
+
+            <ImageButton
+                android:id="@+id/imageCreateHeart"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_alignLeft="@+id/imageCreateTime"
+                android:layout_alignStart="@+id/imageCreateTime"
+                android:layout_marginLeft="13dp"
+                app:srcCompat="@drawable/heart"
+                android:layout_marginTop="140dp"
+                android:layout_alignTop="@+id/imageView10"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:id="@+id/tvCreateFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageCreateHeart"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/imageCreateHeart"
+                android:layout_toRightOf="@+id/imageCreateHeart"
+                android:text="Favourite"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="4dp"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="21dp"
+                android:background="@android:color/white"
+                android:layout_marginTop="140dp"
+                android:layout_marginLeft="180dp"
+                android:id="@+id/view" />
+
+            <ImageButton
+                android:id="@+id/imageAddCook"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="138dp"
+                android:layout_toEndOf="@+id/view"
+                android:layout_toRightOf="@+id/view"
+                app:srcCompat="@drawable/add_to_cook_list"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:id="@+id/tvAddToCookList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageAddCook"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toEndOf="@+id/imageAddCook"
+                android:layout_toRightOf="@+id/imageAddCook"
+                android:text="Add to cook list"
+                android:textColor="@android:color/white"/>
+
+            <!--Hand cursor-->
+            <ImageView
+                android:id="@+id/imageCreateCircle"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/imageCreateRecipe"
+                app:srcCompat="@drawable/circle"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="2dp"/>
+
+            <ImageButton
+                android:id="@+id/imageHandCursor"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignBottom="@+id/imageCreateCircle"
+                android:layout_alignLeft="@+id/imageCreateCircle"
+                android:layout_alignStart="@+id/imageCreateCircle"
+                app:srcCompat="@drawable/handcursor"
+                android:layout_marginBottom="9dp"
+                android:layout_marginLeft="8dp"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

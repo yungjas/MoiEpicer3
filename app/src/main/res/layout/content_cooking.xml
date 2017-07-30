@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="mapp.com.sg.moiepicer.Cooking"
+    tools:showIn="@layout/activity_cooking">
+
+    <!--Cooking layout-->
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--Step Guide btn-->
+            <ImageButton
+                android:id="@+id/btnStepGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/stepguidebtn"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="15dp"/>
+
+            <!--Recipe name-->
+            <TextView
+                android:id="@+id/tvRecipeTitleCook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recipe 1"
+                android:textSize="22dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="140dp"/>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="230dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="70dp"
+                android:background="#95989A"
+                android:padding="0dp"
+                android:paddingTop="0dp"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/imageRecipeCook"
+                android:layout_width="360dp"
+                android:layout_height="172dp"
+                app:srcCompat="@android:drawable/btn_star"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="15dp"/>
+
+            <!--Step 1-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvStep1Cook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Step 1"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/tvTotalStepsCook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="of 4"
+                    android:textSize="20dp"
+                    android:textColor="#95989A"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="10dp"/>
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="130dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="#95989A"
+                    android:padding="0dp"
+                    android:paddingTop="0dp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvStep1Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Beat eggs"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"/>
+            </LinearLayout>
+
+            <!--Ingredient Required-->
+            <TextView
+                android:id="@+id/tvIngredientsCook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredient Required"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#000000"
+                android:textSize="16dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvIngredient1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Boiled Water"
+                    android:textColor="#95989A"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/tvIngredientAmount1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="100"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#95989A"/>
+
+                <TextView
+                    android:id="@+id/tvIngredientUnit1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="c.c"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#95989A"/>
+            </LinearLayout>
+
+            <!--Hard coding the video for now-->
+            <ImageView
+                android:id="@+id/imageStepVideoCook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/video"
+                android:layout_marginTop="10dp"/>
+
+            <!--Previous + next btn-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnCookPrevious2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/previousbtn"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="20dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnCookNext2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/nextbtn"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="20dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!--Sidebar layout, should be the last element to maintain right to left closing gesture-->
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Step guide-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageNavStepGuide"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/stepguide"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="35dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Step Guide"
+                        android:textSize="16dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="#000000"/>
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinnerCookRecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="180dp"/>
+
+                <!--Step 1-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCookStep1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1. Beat the egg"
+                        android:textColor="#000000"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="35dp"
+                        android:textSize="14dp"/>
+
+                    <ImageView
+                        android:id="@+id/imageSideVideo"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/videoicon"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginLeft="10dp"/>
+
+                </LinearLayout>
+
+                <!--Step 2-->
+                <TextView
+                    android:id="@+id/tvCookStep2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2. Prepare the steampot"
+                    android:textColor="#000000"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="35dp"
+                    android:textSize="14dp"/>
+
+                <TextView
+                    android:id="@+id/tvCookStep2Desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prepare steamer, or for a makeshift one, just set a metal rack over a pot of boiling water, making sure ...."
+                    android:textColor="#95989A"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="11dp"
+                    android:textSize="14dp"/>
+
+                <!--Step 3-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCookStep3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3. Steam the egg"
+                        android:textColor="#000000"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="35dp"
+                        android:textSize="14dp"/>
+
+                    <ImageView
+                        android:id="@+id/imageSideSideTimer"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/timer"
+                        android:layout_marginTop="27dp"
+                        android:layout_marginLeft="12dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvCookStep3Desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Turn to low heat, and steam for about 15 min or till set.If you're not sure, shaking the dish a little...."
+                    android:textColor="#95989A"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="11dp"
+                    android:textSize="14dp"/>
+
+                <!--Check list + done btn-->
+                <ImageButton
+                    android:id="@+id/btnSideChecklist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/checklistbtn"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="17dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnSideDoneCook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/donecookingbtn"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="17dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="mapp.com.sg.moiepicer.Alarm"
+    tools:showIn="@layout/activity_alarm">
+
+    <!--Alarm type-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alarmoption1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvAType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alarm Type"
+            android:textColor="#000000"
+            android:textSize="22dp"
+            android:layout_margin="18dp"/>
+
+        <TextView
+            android:id="@+id/tvATypeOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="-15dp"
+            android:textColor="#95989A"/>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="384dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="9dp"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="28dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!--Alarm Tone-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alarmoption2"
+        android:orientation="vertical"
+        android:layout_below="@+id/alarmoption1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/tvATone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alarm Tone"
+            android:textColor="#000000"
+            android:textSize="22dp"
+            android:layout_margin="18dp"/>
+
+        <TextView
+            android:id="@+id/tvAToneOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Morning Dew"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="-15dp"
+            android:textColor="#95989A"/>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="384dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="9dp"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="28dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!--Volume-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alarmoption3"
+        android:orientation="vertical"
+        android:layout_below="@+id/alarmoption2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/tvAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volume"
+            android:textColor="#000000"
+            android:textSize="22dp"
+            android:layout_margin="18dp"/>
+
+        <SeekBar
+            android:id="@+id/seekBarVol"
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="-38dp"/>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="384dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="#95989A"
+            android:padding="0dp"
+            android:paddingTop="0dp"
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="28dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</RelativeLayout>

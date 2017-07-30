@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mapp.com.sg.moiepicer.History"
+    android:paddingBottom="?android:attr/actionBarSize">
+
+   <LinearLayout
+       android:id="@+id/historyLayout"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+       <ImageButton
+           android:id="@+id/btnExpandAll"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:srcCompat="@drawable/expandallbtn"
+           android:background="@android:color/transparent"
+           android:layout_marginTop="25dp"
+           android:layout_marginLeft="19dp"/>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+           <TextView
+               android:id="@+id/month"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="May"
+               android:textColor="#050505"
+               android:layout_marginTop="15dp"
+               android:layout_marginLeft="32dp"
+               android:textSize="16dp"/>
+
+           <View
+               android:id="@+id/view1"
+               android:layout_width="211dp"
+               android:layout_height="1dp"
+               android:layout_marginTop="27dp"
+               android:layout_marginLeft="19dp"
+               android:background="#95989A"
+               android:padding="0dp"
+               android:paddingTop="0dp"
+               android:visibility="visible"
+               tools:layout_editor_absoluteX="28dp"
+               tools:layout_editor_absoluteY="28dp"
+               android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/chevron"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevdown"
+                android:layout_marginTop="14dp"
+                android:background="@android:color/transparent"/>
+                <!--android:onClick="onClick"/>-->
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:id="@+id/tvDate"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="11th"
+               android:textColor="#050505"
+               android:textSize="16dp"
+               android:layout_marginLeft="50dp"
+               android:layout_marginTop="15dp"/>
+
+           <View
+               android:id="@+id/view2"
+               android:layout_width="191dp"
+               android:layout_height="1dp"
+               android:layout_marginTop="25dp"
+               android:layout_marginLeft="19dp"
+               android:background="#95989A"
+               android:padding="0dp"
+               android:paddingTop="0dp"
+               android:visibility="visible"
+               tools:layout_editor_absoluteX="28dp"
+               tools:layout_editor_absoluteY="28dp"
+               android:layout_weight="1" />
+
+           <ImageButton
+               android:id="@+id/chevron2"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/chevdown"
+               android:layout_marginTop="14dp"
+               android:background="@android:color/transparent"/>
+           <!--android:onClick="onClick"/>-->
+       </LinearLayout>
+
+       <TextView
+           android:id="@+id/tvRecipe1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Recipe 1"
+           android:textColor="#000000"
+           android:layout_marginLeft="40dp"
+           android:layout_marginTop="13dp"/>
+
+       <!--Recipe layout-->
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/recipeHis1">
+
+           <ImageView
+               android:id="@+id/imageHisRecipe"
+               android:layout_width="308dp"
+               android:layout_height="167dp"
+               android:layout_weight="1"
+               app:srcCompat="@android:drawable/btn_star"
+               android:background="@android:color/darker_gray"
+               android:layout_marginLeft="29dp"
+               android:layout_marginTop="3dp"/>
+
+           <!--Time-->
+           <ImageView
+               android:id="@+id/box1"
+               android:layout_width="110dp"
+               android:layout_height="40dp"
+               android:layout_alignTop="@+id/imageHisRecipe"
+               app:srcCompat="@drawable/rectangle"
+               android:layout_alignLeft="@+id/imageHisRecipe"
+               android:layout_alignStart="@+id/imageHisRecipe" />
+
+           <ImageView
+               android:id="@+id/imageHisTime"
+               android:layout_width="23dp"
+               android:layout_height="23dp"
+               android:layout_alignBottom="@+id/box1"
+               android:layout_alignLeft="@+id/imageHisRecipe"
+               android:layout_alignStart="@+id/imageHisRecipe"
+               app:srcCompat="@drawable/time"
+               android:layout_marginLeft="9dp"
+               android:layout_marginBottom="7dp"/>
+
+           <TextView
+               android:id="@+id/tvTime"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/imageHisTime"
+               android:layout_alignEnd="@+id/box1"
+               android:layout_alignRight="@+id/box1"
+               android:layout_marginEnd="7dp"
+               android:layout_marginRight="6dp"
+               android:text="TextView"
+               android:textColor="@android:color/white"
+               android:layout_marginBottom="3dp" />
+
+           <!--fav and add button-->
+           <ImageView
+               android:id="@+id/imageView10"
+               android:layout_width="110dp"
+               android:layout_height="40dp"
+               android:layout_alignLeft="@+id/imageHisRecipe"
+               android:layout_alignParentBottom="true"
+               android:layout_alignStart="@+id/imageHisRecipe"
+               app:srcCompat="@drawable/rectangle"
+               android:layout_alignRight="@+id/imageHisRecipe"
+               android:layout_alignEnd="@+id/imageHisRecipe" />
+
+           <ImageButton
+               android:id="@+id/imageHisHeart"
+               android:layout_width="23dp"
+               android:layout_height="23dp"
+               android:layout_alignLeft="@+id/imageHisTime"
+               android:layout_alignStart="@+id/imageHisTime"
+               android:layout_marginLeft="13dp"
+               app:srcCompat="@drawable/heart"
+               android:layout_marginTop="140dp"
+               android:layout_alignTop="@+id/imageView10"
+               android:background="@android:color/transparent"/>
+
+           <TextView
+               android:id="@+id/tvFav"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/imageHisHeart"
+               android:layout_marginLeft="10dp"
+               android:layout_marginStart="12dp"
+               android:layout_toEndOf="@+id/imageHisHeart"
+               android:layout_toRightOf="@+id/imageHisHeart"
+               android:text="Favourite"
+               android:textColor="@android:color/white"
+               android:layout_marginBottom="4dp"/>
+
+           <View
+               android:layout_width="1dp"
+               android:layout_height="21dp"
+               android:background="@android:color/white"
+               android:layout_marginTop="140dp"
+               android:layout_marginLeft="180dp"
+               android:id="@+id/view" />
+
+           <ImageButton
+               android:id="@+id/imageAddCook"
+               android:layout_width="23dp"
+               android:layout_height="23dp"
+               android:layout_marginLeft="12dp"
+               android:layout_marginTop="138dp"
+               android:layout_toEndOf="@+id/view"
+               android:layout_toRightOf="@+id/view"
+               app:srcCompat="@drawable/add_to_cook_list"
+               android:background="@android:color/transparent"/>
+
+           <TextView
+               android:id="@+id/tvAddToCookList"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/imageAddCook"
+               android:layout_marginLeft="7dp"
+               android:layout_marginBottom="2dp"
+               android:layout_toEndOf="@+id/imageAddCook"
+               android:layout_toRightOf="@+id/imageAddCook"
+               android:text="Add to cook list"
+               android:textColor="@android:color/white"/>
+
+           <!--Hand cursor-->
+           <ImageView
+               android:id="@+id/imageHisCircle"
+               android:layout_width="35dp"
+               android:layout_height="35dp"
+               android:layout_alignParentEnd="true"
+               android:layout_alignParentRight="true"
+               android:layout_alignTop="@+id/imageHisRecipe"
+               app:srcCompat="@drawable/circle"
+               android:layout_marginRight="25dp"
+               android:layout_marginTop="2dp"/>
+
+           <ImageButton
+               android:id="@+id/imageHandCursor"
+               android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:layout_alignBottom="@+id/imageHisCircle"
+               android:layout_alignLeft="@+id/imageHisCircle"
+               android:layout_alignStart="@+id/imageHisCircle"
+               app:srcCompat="@drawable/handcursor"
+               android:layout_marginBottom="9dp"
+               android:layout_marginLeft="8dp"
+               android:background="@android:color/transparent"/>
+       </RelativeLayout>
+   </LinearLayout>
+</ScrollView>
