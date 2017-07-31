@@ -14,11 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import mapp.com.sg.moiepicer.Model.Ingredient;
 
 public class Testing extends AppCompatActivity {
+    private final String TAG_INGREDIENT="INGREDIENT";
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("Ingredient");
+    DatabaseReference mIngredientRef = database.getReference("Ingredient");
+    private ArrayList<Ingredient> ingredientList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,28 +30,27 @@ public class Testing extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        mIngredientRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    Log.i("Testing",snapshot.getValue(Ingredient.class).getName());
+                for(DataSnapshot childSnapshot:dataSnapshot.getChildren()){
+                    Ingredient ingredient = childSnapshot.getValue(Ingredient.class);
+                    if(ingredient!=null){
+                        ingredientList.add(ingredient);
+                        Log.i(TAG_INGREDIENT,ingredient.getName() +"\t"+ingredient.getType());
+                    }
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                    
+                    Log.w(TAG_INGREDIENT,"Fail to load Ingredient");
             }
         });
+
+
+
+
 
 
     }

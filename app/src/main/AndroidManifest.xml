@@ -13,11 +13,6 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Home"
@@ -55,6 +50,16 @@
             android:name=".Cooking"
             android:label="@string/title_activity_cooking"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Testing"
+            android:label="Testing"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"
+                    />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
