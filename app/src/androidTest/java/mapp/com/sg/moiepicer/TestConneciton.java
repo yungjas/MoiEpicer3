@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,14 +26,15 @@ public class TestConneciton {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mIngredientRef = database.getReference("Ingredient");
         final ArrayList<Ingredient> ingredientList= new ArrayList<>();
-
+        Log.i(TAG_INGREDIENT,"Testing");
         mIngredientRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot childSnapshot:dataSnapshot.getChildren()){
                     Ingredient ingredient = childSnapshot.getValue(Ingredient.class);
-                    if(ingredient!=null){
 
+                    if(ingredient!=null){
                         ingredientList.add(ingredient);
                         Log.i(TAG_INGREDIENT,ingredient.getName() +"\t"+ingredient.getType());
                     }
@@ -44,5 +46,6 @@ public class TestConneciton {
                 Log.w(TAG_INGREDIENT,"Fail to load Ingredient");
             }
         });
+
     }
 }
