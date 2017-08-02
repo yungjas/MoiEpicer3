@@ -3,8 +3,6 @@ package mapp.com.sg.moiepicer.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.database.IgnoreExtraProperties;
-
 import java.util.ArrayList;
 
 /**
@@ -15,16 +13,17 @@ public class Recipe implements Parcelable {
     private String name;
     private String dish;
     private String description;
-    private long timeStamp;
+    private long duration;
+    private ArrayList<Step> requiredSteps=null;
 
     public Recipe() {
     }
 
-    public Recipe(String name, String dish, String description, long timeStamp) {
+    public Recipe(String name, String dish, String description, long duration) {
         this.name = name;
         this.dish = dish;
         this.description = description;
-        this.timeStamp = timeStamp;
+        this.duration = duration;
     }
 
     public Recipe(String name, String dish, String description) {
@@ -37,7 +36,7 @@ public class Recipe implements Parcelable {
         name = in.readString();
         dish = in.readString();
         description = in.readString();
-        timeStamp = in.readLong();
+        duration = in.readLong();
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -76,12 +75,12 @@ public class Recipe implements Parcelable {
         this.description = description;
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
+    public long getDuration() {
+        return duration;
     }
 
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 
     @Override
@@ -94,6 +93,14 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeString(dish);
         dest.writeString(description);
-        dest.writeLong(timeStamp);
+        dest.writeLong(duration);
+    }
+
+    public ArrayList<Step> getRequiredSteps() {
+        return requiredSteps;
+    }
+
+    public void setRequiredSteps(ArrayList<Step> requiredSteps) {
+        this.requiredSteps = requiredSteps;
     }
 }

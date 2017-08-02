@@ -4,14 +4,18 @@ package mapp.com.sg.moiepicer.Model;
  * Created by EternalFlames on 7/31/2017.
  */
 
-class Step {
+public class Step {
     private String name;
     private String description;
-
-    private int duration ;
-//    private String url;
+    private int time;
 
     public Step() {
+    }
+
+    public Step(String name, String description, int time) {
+        this.name = name;
+        this.description = description;
+        this.time = time;
     }
 
     public String getName() {
@@ -22,7 +26,8 @@ class Step {
         return description;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getTime() {
+        return time;
     }
+
 }

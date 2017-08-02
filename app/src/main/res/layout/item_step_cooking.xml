@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_large">
+
+
+    <TextView
+        android:id="@+id/tvStepName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:text="2. Prepare the steampot"
+        android:textColor="#000000"
+        android:textSize="14dp" />
+
+    <ImageView
+        android:id="@+id/imageSideVideo"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/tvStepName"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        app:srcCompat="@drawable/videoicon" />
+
+
+    <TextView
+        android:id="@+id/tvStepDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvStepName"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_alignEnd="@+id/tvStepName"
+        android:text="Prepare steamer, or for a makeshift one, just set a metal rack over a pot of boiling water, making sure ...."
+        android:textColor="#95989A"
+        android:textSize="14dp"
+        android:layout_alignRight="@+id/tvStepName" />
+</RelativeLayout>

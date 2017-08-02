@@ -243,95 +243,13 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="180dp"/>
 
-                <!--Step 1-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/rv_Steps_drawer">
 
-                    <TextView
-                        android:id="@+id/tvCookStep1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="1. Beat the egg"
-                        android:textColor="#000000"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="35dp"
-                        android:textSize="14dp"/>
 
-                    <ImageView
-                        android:id="@+id/imageSideVideo"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/videoicon"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginLeft="10dp"/>
-
-                </LinearLayout>
-
-                <!--Step 2-->
-                <TextView
-                    android:id="@+id/tvCookStep2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="2. Prepare the steampot"
-                    android:textColor="#000000"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="35dp"
-                    android:textSize="14dp"/>
-
-                <TextView
-                    android:id="@+id/tvCookStep2Desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Prepare steamer, or for a makeshift one, just set a metal rack over a pot of boiling water, making sure ...."
-                    android:textColor="#95989A"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="11dp"
-                    android:textSize="14dp"/>
-
-                <!--Step 3-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvCookStep3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="3. Steam the egg"
-                        android:textColor="#000000"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginLeft="35dp"
-                        android:textSize="14dp"/>
-
-                    <ImageView
-                        android:id="@+id/imageSideSideTimer"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/timer"
-                        android:layout_marginTop="27dp"
-                        android:layout_marginLeft="12dp"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvCookStep3Desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Turn to low heat, and steam for about 15 min or till set.If you're not sure, shaking the dish a little...."
-                    android:textColor="#95989A"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="11dp"
-                    android:textSize="14dp"/>
+                </android.support.v7.widget.RecyclerView>
 
                 <!--Check list + done btn-->
                 <ImageButton
@@ -344,7 +262,7 @@
                     android:layout_marginTop="17dp"/>
 
                 <ImageButton
-                    android:id="@+id/btnSideDoneCook"
+                    android:id="@+id/btn_DoneCooking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/donecookingbtn"
