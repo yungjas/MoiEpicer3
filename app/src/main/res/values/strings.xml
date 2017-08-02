@@ -5,7 +5,7 @@
     <string name="title_activity_home">Home</string>
     <string name="delete">Delete</string>
     <string name="start_cooking">Start Cooking</string>
-    <string name="recipe_1">Recipe 1</string>
+    <string name="recipe_1">Simpe double recipe name</string>
     <string name="recipe_2">Recipe 2</string>
     <string name="expand_all">Expand all</string>
     <string name="create_your_recipe">Create your recipe</string>
@@ -17,4 +17,5 @@
     <string name="title_activity_recipe_details">RecipeDetails</string>
     <string name="title_activity_cooking">Cooking</string>
     <string name="_2_prepare_the_steampot">2. Prepare the steampot\nPrepare steamer, or for a makeshift one, just set a metal rack over a pot of boiling water, making sure ........</string>
+    <string name="btnAddtoCook" >Add to cook </string>>
 </resources>

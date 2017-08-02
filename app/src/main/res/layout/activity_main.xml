@@ -27,9 +27,9 @@
                 android:id="@+id/imageLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:layout_weight="1"
-                android:src="@drawable/logo2"
-                android:layout_gravity="center"/>
+                android:src="@drawable/logo2" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -38,9 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabBackground="@android:color/white"
-            app:tabTextColor="@color/fontColor"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"/>
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+            app:tabTextColor="@color/fontColor" />
 
     </android.support.design.widget.AppBarLayout>
 

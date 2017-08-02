@@ -17,7 +17,15 @@
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"
+                    />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".History" />
         <activity android:name=".Create" />
         <activity android:name=".User" />
@@ -53,11 +61,7 @@
         <activity android:name=".Testing"
             android:label="Testing"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"
-                    />
-            </intent-filter>
+
         </activity>
 
     </application>

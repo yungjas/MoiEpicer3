@@ -40,6 +40,7 @@ public class Testing extends AppCompatActivity {
                         Log.i(TAG_INGREDIENT,ingredient.getName() +"\t"+ingredient.getType());
                     }
                 }
+               Log.i(TAG_INGREDIENT ,dataSnapshot.getKey());
             }
 
             @Override

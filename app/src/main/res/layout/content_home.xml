@@ -1,204 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="?android:attr/actionBarSize"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mapp.com.sg.moiepicer.Home"
     tools:showIn="@layout/activity_home"
-    android:paddingBottom="?android:attr/actionBarSize">
+    android:weightSum="1">
 
-    <RelativeLayout
-        android:id="@+id/homeLayout"
+    <ImageButton
+        android:id="@+id/btn_startCooking"
         android:layout_width="match_parent"
-        android:layout_height="700dp">
+        android:layout_height="72dp"
+        android:layout_weight="0.21"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/startcookbtn" />
 
-        <!--Start Cooking button-->
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/startcookbtn"
-            android:background="@android:color/transparent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="23dp"/>
-
-        <!--Recipe 1-->
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="90dp"
-            android:text="@string/recipe_1"
-            android:textColor="#000000"
-            android:textSize="14dp" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/imageRec1"
-            android:layout_alignRight="@+id/imageRec1"
-            android:layout_alignTop="@+id/tv1">
-
-            <ImageButton
-                android:id="@+id/btnDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/linearLayout"
-                android:layout_alignRight="@+id/linearLayout"
-                android:layout_alignTop="@+id/tv1"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/delete" />
-
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/btnDelete"
-                android:layout_marginTop="4dp"
-                android:text="@string/delete"
-                android:textColor="#000000" />
-        </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_toCookList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/btn_startCooking"
+        android:layout_alignStart="@+id/btn_startCooking"
+        android:layout_below="@+id/btn_startCooking"
+        />
 
 
-        <ImageView
-            android:id="@+id/imageRec1"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_marginLeft="0dp"
-            android:layout_below="@+id/linearLayout3"
-            android:layout_centerHorizontal="true"
-            android:background="#525252"
-            app:srcCompat="@android:drawable/btn_star_big_off" />
-
-        <!--Recipe 2-->
-
-        <TextView
-            android:id="@+id/tv3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/tv1"
-            android:layout_alignLeft="@+id/tv1"
-            android:layout_below="@+id/imageRec1"
-            android:layout_marginTop="46dp"
-            android:text="@string/recipe_2"
-            android:textColor="#000000"
-            android:textSize="14dp" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignTop="@+id/tv3"
-            android:layout_alignRight="@+id/imageRec2"
-            android:layout_alignEnd="@+id/imageRec2">
-
-            <ImageButton
-                android:id="@+id/btnDelete2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/linearLayout"
-                android:layout_alignRight="@+id/linearLayout"
-                android:layout_alignTop="@+id/tv1"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/delete" />
-
-            <TextView
-                android:id="@+id/tv4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/btnDelete"
-                android:layout_marginTop="4dp"
-                android:text="@string/delete"
-                android:textColor="#000000" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageRec2"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_alignLeft="@+id/imageRec1"
-            android:layout_alignStart="@+id/imageRec1"
-            android:layout_below="@+id/tv3"
-            android:layout_marginTop="12dp"
-            android:background="#525252"
-            app:srcCompat="@android:drawable/btn_star" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignEnd="@+id/imageRec1"
-            android:layout_alignRight="@+id/imageRec1"
-            android:layout_below="@+id/linearLayout3"
-            app:srcCompat="@drawable/up" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/imageRec1"
-            android:layout_alignEnd="@+id/imageRec1"
-            android:layout_alignRight="@+id/imageRec1"
-            app:srcCompat="@drawable/down" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignEnd="@+id/imageRec2"
-            android:layout_alignRight="@+id/imageRec2"
-            android:layout_below="@+id/linearLayout4"
-            app:srcCompat="@drawable/up" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/imageRec2"
-            android:layout_alignEnd="@+id/imageRec2"
-            android:layout_alignRight="@+id/imageRec2"
-            app:srcCompat="@drawable/down" />
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/imageRec1"
-            android:layout_alignLeft="@+id/imageView3"
-            android:layout_alignRight="@+id/imageRec1"
-            android:layout_alignStart="@+id/imageView3"
-            android:layout_below="@+id/imageView3"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/unitborder"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="     1"
-            android:textColor="@android:color/white" />
-
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/imageRec2"
-            android:layout_alignRight="@+id/imageRec2"
-            android:layout_below="@+id/imageView5"
-            android:layout_marginTop="23dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="     1"
-            android:layout_alignLeft="@+id/imageView5"
-            android:layout_alignStart="@+id/imageView5"
-            android:textColor="@android:color/white"
-            android:background="@drawable/unitborder"/>
-
-
-    </RelativeLayout>
-
-
-</ScrollView>
+</LinearLayout>
