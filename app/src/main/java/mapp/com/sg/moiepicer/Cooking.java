@@ -36,7 +36,7 @@ public class Cooking extends AppCompatActivity {
         mToCookList=b.getParcelableArrayList(Home.TOCOOKLIST);
 
         for(Recipe recipe : mToCookList){
-            Log.i(TAG_RECIPE,"I am cooking :" + recipe.getName());
+            Log.i(TAG_RECIPE,"I am cooking  :" + recipe.getName());
         }
     }
 
