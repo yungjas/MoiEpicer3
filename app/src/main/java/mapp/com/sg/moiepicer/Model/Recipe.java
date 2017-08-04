@@ -10,16 +10,19 @@ import java.util.ArrayList;
  */
 
 public class Recipe implements Parcelable {
+    private String uID;
     private String name;
     private String dish;
     private String description;
     private long duration;
     private ArrayList<Step> requiredSteps=null;
+    private ArrayList<Ingredient> requiredIngredient=null;
 
     public Recipe() {
     }
 
-    public Recipe(String name, String dish, String description, long duration) {
+    public Recipe(String uID,String name, String dish, String description, long duration) {
+        this.uID=uID;
         this.name = name;
         this.dish = dish;
         this.description = description;
@@ -33,6 +36,7 @@ public class Recipe implements Parcelable {
     }
 
     protected Recipe(Parcel in) {
+        uID=in.readString();
         name = in.readString();
         dish = in.readString();
         description = in.readString();
@@ -50,6 +54,14 @@ public class Recipe implements Parcelable {
             return new Recipe[size];
         }
     };
+
+    public String getUID() {
+        return uID;
+    }
+
+    public void setUID(String uID) {
+        this.uID = uID;
+    }
 
     public String getName() {
         return name;
@@ -90,6 +102,7 @@ public class Recipe implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(uID);
         dest.writeString(name);
         dest.writeString(dish);
         dest.writeString(description);
@@ -100,7 +113,16 @@ public class Recipe implements Parcelable {
         return requiredSteps;
     }
 
+    public ArrayList<Ingredient> getRequiredIngredient() {
+        return requiredIngredient;
+    }
+
+    public void setRequiredIngredient(ArrayList<Ingredient> requiredIngredient) {
+        this.requiredIngredient = requiredIngredient;
+    }
+
     public void setRequiredSteps(ArrayList<Step> requiredSteps) {
         this.requiredSteps = requiredSteps;
     }
+
 }
