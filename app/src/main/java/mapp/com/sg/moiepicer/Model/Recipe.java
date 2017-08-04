@@ -14,14 +14,14 @@ public class Recipe implements Parcelable {
     private String name;
     private String dish;
     private String description;
-    private long duration;
+    private int duration;
     private ArrayList<Step> requiredSteps=null;
-    private ArrayList<Ingredient> requiredIngredient=null;
+    private ArrayList<RequiredIngredient> requiredIngredient=null;
 
     public Recipe() {
     }
 
-    public Recipe(String uID,String name, String dish, String description, long duration) {
+    public Recipe(String uID, String name, String dish, String description, int duration) {
         this.uID=uID;
         this.name = name;
         this.dish = dish;
@@ -40,7 +40,7 @@ public class Recipe implements Parcelable {
         name = in.readString();
         dish = in.readString();
         description = in.readString();
-        duration = in.readLong();
+        duration = in.readInt();
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -87,11 +87,11 @@ public class Recipe implements Parcelable {
         this.description = description;
     }
 
-    public long getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(long duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
@@ -106,18 +106,18 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeString(dish);
         dest.writeString(description);
-        dest.writeLong(duration);
+        dest.writeInt(duration);
     }
 
     public ArrayList<Step> getRequiredSteps() {
         return requiredSteps;
     }
 
-    public ArrayList<Ingredient> getRequiredIngredient() {
+    public ArrayList<RequiredIngredient> getRequiredIngredient() {
         return requiredIngredient;
     }
 
-    public void setRequiredIngredient(ArrayList<Ingredient> requiredIngredient) {
+    public void setRequiredIngredient(ArrayList<RequiredIngredient> requiredIngredient) {
         this.requiredIngredient = requiredIngredient;
     }
 
