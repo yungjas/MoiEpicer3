@@ -7,12 +7,13 @@ import android.os.Parcelable;
  * Created by EternalFlames on 7/31/2017.
  */
 
-class RequiredIngredient implements Parcelable{
+public class RequiredIngredient implements Parcelable{
     private Ingredient ingredient;
     private int amount;
     private String Unit;
 
-    public RequiredIngredient() {
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
     public RequiredIngredient(Ingredient ingredient, int amount, String unit) {
@@ -22,7 +23,7 @@ class RequiredIngredient implements Parcelable{
     }
 
     protected RequiredIngredient(Parcel in) {
-        ingredient = in.readParcelable(Ingredient.class.getClassLoader());
+//        ingredient = in.readParcelable(Ingredient.class.getClassLoader());
         amount = in.readInt();
         Unit = in.readString();
     }
@@ -39,9 +40,18 @@ class RequiredIngredient implements Parcelable{
         }
     };
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    @Override
+    public int describeContents() {
+        return 0;
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeParcelable(ingredient, flags);
+        dest.writeInt(amount);
+        dest.writeString(Unit);
+    }
+
 
     public int getAmount() {
         return amount;
@@ -51,15 +61,7 @@ class RequiredIngredient implements Parcelable{
         return Unit;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+    public RequiredIngredient() {
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(ingredient, flags);
-        dest.writeInt(amount);
-        dest.writeString(Unit);
     }
 }

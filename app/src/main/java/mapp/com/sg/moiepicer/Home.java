@@ -40,14 +40,14 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         //Get all view
         recyclerView = (RecyclerView) findViewById(R.id.rv_toCookList);
         btnStartCooking = (ImageButton) findViewById(R.id.btn_startCooking);
@@ -62,6 +62,7 @@ public class Home extends AppCompatActivity {
         recyclerView.setHasFixedSize(false);
         final RecipeAdapter mAdapter = new RecipeAdapter(toCookList);
         recyclerView.setAdapter(mAdapter);
+
 
 
         //Testing purpose to get all recipe
@@ -91,10 +92,12 @@ public class Home extends AppCompatActivity {
                     Intent intent = new Intent(Home.this,Cooking.class);
                     Bundle b = new Bundle();
                     b.putParcelableArrayList(TOCOOKLIST,Home.this.toCookList);
-                     intent.putExtra("bundle",b);
+                    intent.putExtra("bundle",b);
                     Home.this.startActivity(intent);
                 }
             });
+
+
     }
 
 }

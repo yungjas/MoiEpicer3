@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Step implements Parcelable{
-    private String seq;
+    private long seq;
     private String name;
     private String description;
     private int time;
@@ -16,7 +16,7 @@ public class Step implements Parcelable{
     public Step() {
     }
 
-    public Step(String seq, String name, String description, int time) {
+    public Step(long seq, String name, String description, int time) {
         this.seq = seq;
         this.name = name;
         this.description = description;
@@ -25,7 +25,7 @@ public class Step implements Parcelable{
 
 
     protected Step(Parcel in) {
-        seq = in.readString();
+        seq = in.readLong();
         name = in.readString();
         description = in.readString();
         time = in.readInt();
@@ -43,7 +43,7 @@ public class Step implements Parcelable{
         }
     };
 
-    public String getSeq() {
+    public long getSeq() {
         return seq;
     }
 
@@ -67,7 +67,7 @@ public class Step implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(seq);
+        dest.writeLong(seq);
         dest.writeString(name);
         dest.writeString(description);
         dest.writeInt(time);

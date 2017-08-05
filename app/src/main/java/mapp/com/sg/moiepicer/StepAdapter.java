@@ -52,6 +52,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
         Step step = mDataset.get(position);
         holder.tvStepName.setText(step.getName());
         holder.tvStepDescription.setText(step.getDescription());
@@ -65,5 +66,10 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public void setDataSet(ArrayList<Step> newStepArray){
+        mDataset =newStepArray;
+        notifyDataSetChanged();
     }
 }

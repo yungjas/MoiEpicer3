@@ -33,26 +33,26 @@
                 android:id="@+id/tvRecipeName_Cooking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="140dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/margin_medium"
                 android:text="Recipe 1"
                 android:textSize="22dp" />
 
-            <View
-                android:id="@+id/view1"
-                android:layout_width="230dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="70dp"
-                android:background="#95989A"
-                android:padding="0dp"
-                android:paddingTop="0dp"
-                android:visibility="visible" />
+            <!--<View-->
+                <!--android:id="@+id/view1"-->
+                <!--android:layout_width="230dp"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginTop="3dp"-->
+                <!--android:layout_marginLeft="70dp"-->
+                <!--android:background="#95989A"-->
+                <!--android:padding="0dp"-->
+                <!--android:paddingTop="0dp"-->
+                <!--android:visibility="visible" />-->
 
             <ImageView
                 android:id="@+id/imageRecipeCook"
                 android:layout_width="360dp"
                 android:layout_height="172dp"
+                android:layout_margin="@dimen/margin_medium"
                 app:srcCompat="@android:drawable/btn_star"
                 android:background="@android:color/darker_gray"
                 android:layout_marginTop="15dp"/>
@@ -110,58 +110,16 @@
 
             <!--Ingredient Required-->
             <TextView
-                android:id="@+id/tvIngredientsCook"
+                android:id="@+id/tvStepDescription_Cooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingredient Required"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
+                android:text="Ingredient Required"
                 android:textColor="#000000"
-                android:textSize="16dp"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvIngredient1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Boiled Water"
-                    android:textColor="#95989A"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    android:id="@+id/tvIngredientAmount1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="100"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="#95989A"/>
-
-                <TextView
-                    android:id="@+id/tvIngredientUnit1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="c.c"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="#95989A"/>
-            </LinearLayout>
+                android:textSize="16dp" />
 
             <!--Hard coding the video for now-->
-            <ImageView
-                android:id="@+id/imageStepVideoCook"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/video"
-                android:layout_marginTop="10dp"/>
 
             <!--Previous + next btn-->
             <LinearLayout
@@ -170,7 +128,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btnCookPrevious2"
+                    android:id="@+id/btn_Previous_Cooking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -179,7 +137,7 @@
                     android:layout_marginTop="20dp"/>
 
                 <ImageButton
-                    android:id="@+id/btnCookNext2"
+                    android:id="@+id/btn_Next_Cooking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -240,8 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="180dp"/>
+                    android:layout_marginTop="20dp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"

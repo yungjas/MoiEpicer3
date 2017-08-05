@@ -17,5 +17,5 @@
     <string name="title_activity_recipe_details">RecipeDetails</string>
     <string name="title_activity_cooking">Cooking</string>
     <string name="_2_prepare_the_steampot">2. Prepare the steampot\nPrepare steamer, or for a makeshift one, just set a metal rack over a pot of boiling water, making sure ........</string>
-    <string name="btnAddtoCook" >Add to cook </string>>
+    <string name="btnAddtoCook">Add to cook </string>>
 </resources>

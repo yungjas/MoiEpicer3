@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -29,12 +30,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         protected TextView tvRecipeName;
         protected ImageView imageView_recipe;
         protected ImageButton btn_StartCooking;
+        protected  Button btn_delete;
 
         public ViewHolder(final View itemView) {
             super(itemView);
 
             tvRecipeName = (TextView) itemView.findViewById(R.id.tvRecipeName);
             imageView_recipe = (ImageView) itemView.findViewById(R.id.imageView_recipe);
+            btn_delete = (Button) itemView.findViewById(R.id.btn_delete_recipe);
 
 
         }
@@ -62,11 +65,39 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Recipe recipe =  mDataset.get(position);
         holder.tvRecipeName.setText(recipe.getName());
+        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Recipe removedRecipe= mDataset.remove(position);
+                RecipeAdapter.this.notifyDataSetChanged();
+                Toast.makeText(v.getContext() ,"Removed Recipe: " +removedRecipe.getName() , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.imageView_recipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Recipe getRecipe = mDataset.get(position);
+                RecipeAdapter.this.notifyDataSetChanged();
+
+                final Intent intent;
+                intent = new Intent(holder.imageView_recipe.getContext(),RecipeDetails.class);
+
+                holder.imageView_recipe.getContext().startActivity(intent);
+            }
+        });
+
+
+
+
+
+
 //        holder.imageView_recipe.setImageResource(/*set something */);
 
     }
