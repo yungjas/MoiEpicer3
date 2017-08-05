@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
         protected TextView tvStepName,tvStepDescription;
         public ViewHolder(final View itemView) {
             super(itemView);
-
             tvStepName = (TextView) itemView.findViewById(R.id.tvStepName);
             tvStepDescription =(TextView) itemView.findViewById(R.id.tvStepDescription);
 
@@ -37,6 +37,8 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
     public StepAdapter(ArrayList<Step> myDataset) {
         mDataset = myDataset;
     }
+
+
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -56,7 +58,10 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.ViewHolder> {
         Step step = mDataset.get(position);
         holder.tvStepName.setText(step.getName());
         holder.tvStepDescription.setText(step.getDescription());
+
+
     }
+
 
 
     // Replace the contents of a view (invoked by the layout manager)

@@ -14,13 +14,16 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,9 +48,14 @@ public class Cooking extends AppCompatActivity {
     private TextView tvRecipeName;
     private NavigationView navigatorView;
     private DrawerLayout drawerLayout;
-    private ImageButton btn_DoneCooking, btnStepGuide;
+    private ScrollView scrollView;
+    private ImageButton btn_DoneCooking, btnStepGuide,btn_NextStep, btn_PreviousStep;
     private RecyclerView rv_steps_drawer;
-    private TextView tvStepDescription_Cooking;
+    private TextView tvStepDescription_Cooking,
+                        tvStepTitle,
+                        tvCurrentStepSeq,
+                        tvTotalStep;
+
     private Step currentStep;
     private FirebaseDatabase mfirebase = FirebaseDatabase.getInstance();
     private DatabaseReference mRootRef = mfirebase.getReference(),
@@ -77,20 +85,43 @@ public class Cooking extends AppCompatActivity {
         initialUI();
 
         mToCookList = DataHelper.getSampleData();
-
         currentRecipe = mToCookList.get(recipeIndex);
         //StepRecycleView
         mRequiredStep = currentRecipe.getRequiredSteps();
-
+        currentStep =mRequiredStep.get(stepIndex);
         //setupRecycleView
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv_steps_drawer.setLayoutManager(llm);
         StepAdapter adapter = new StepAdapter(mRequiredStep);
-
         rv_steps_drawer.setAdapter(adapter);
-        adapter.setDataSet(mRequiredStep);
+        rv_steps_drawer.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                View child=rv.findChildViewUnder(e.getX(),e.getY());
+                int index = rv.getChildAdapterPosition(child);
+                if(index!=-1){
+                    stepIndex=index;
+                    currentStep=mRequiredStep.get(stepIndex);
+                    updateUI();
+                    child.getParent().requestDisallowInterceptTouchEvent(true);
+                    drawerLayout.closeDrawers();
+                }
+                return true;
+            }
 
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
+        adapter.setDataSet(mRequiredStep);
 
 
         //set finish button
@@ -114,7 +145,7 @@ public class Cooking extends AppCompatActivity {
         });
 
         //UpdateUI
-//        updateUI();
+        updateUI();
     }
 
 
@@ -131,19 +162,26 @@ public class Cooking extends AppCompatActivity {
     }
 
     private void updateUI() {
-        currentRecipe = mToCookList.get(recipeIndex);
-        currentStep = currentRecipe.getRequiredSteps().get(stepIndex);
+
         tvRecipeName.setText(currentRecipe.getName());
-        //Step num
         tvStepDescription_Cooking.setText(currentStep.getDescription());
+        tvStepTitle.setText(currentStep.getName());
+        tvCurrentStepSeq.setText(String.valueOf(stepIndex+1));
+        tvTotalStep.setText(String.valueOf(mRequiredStep.size()));
+
     }
 
     private void initialUI() {
+        scrollView= (ScrollView) findViewById(R.id.sv_main_Cooking);
         tvRecipeName = (TextView) findViewById(R.id.tvRecipeName_Cooking);
         tvStepDescription_Cooking = (TextView) findViewById(R.id.tvStepDescription_Cooking);
+        tvCurrentStepSeq=(TextView) findViewById(R.id.tv_StepSeq_Cooking);
+        tvTotalStep =(TextView) findViewById(R.id.tv_totalStep_Cooking);
         navigatorView = (NavigationView) findViewById(R.id.navigator_cooking);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_cooking);
         btn_DoneCooking = (ImageButton) findViewById(R.id.btn_DoneCooking);
+        btn_NextStep=(ImageButton)findViewById(R.id.btn_Next_Cooking);
+        btn_PreviousStep = (ImageButton) findViewById(R.id.btn_Previous_Cooking);
         rv_steps_drawer = (RecyclerView) findViewById(R.id.rv_Steps_drawer);
         btnStepGuide = (ImageButton) findViewById(R.id.btnStepGuide);
 
@@ -166,6 +204,43 @@ public class Cooking extends AppCompatActivity {
         });
 
         //set rv_Step
+        rv_steps_drawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //setActionlistner
+
+
+        btn_PreviousStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stepIndex==0){
+                    Toast.makeText(Cooking.this,"You are at the first step",Toast.LENGTH_SHORT).show();
+                }else {
+                    stepIndex--;
+                    currentStep=mRequiredStep.get(stepIndex);
+                    scrollView.smoothScrollTo(0,0);
+                    updateUI();
+            }
+        }}
+        );
+        btn_NextStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stepIndex==mRequiredStep.size()-1){
+                    Toast.makeText(Cooking.this,"You reach the last step",Toast.LENGTH_SHORT).show();
+                }else {
+                    stepIndex++;
+                    currentStep=mRequiredStep.get(stepIndex);
+                    scrollView.smoothScrollTo(0,0);
+                    updateUI();
+                }
+            }
+        });
+
 
 
         ;

@@ -22,7 +22,7 @@ public  class DataHelper {
         requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
         requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
         requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
-        requiredStep1.add(new Step(1,"Step1","Descript 1",0));
+        requiredStep1.add(new Step(1,"Step1","Descript ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1",0));
         requiredStep1.add(new Step(2,"Step2","Descript 2",0));
         requiredStep1.add(new Step(3,"Step3","Descript 3",1800000));
         requiredStep1.add(new Step(4,"Step4","Descript 4",0));
