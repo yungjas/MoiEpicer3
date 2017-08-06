@@ -366,7 +366,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tvIngredientTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -401,7 +401,13 @@
                 android:text="plant"
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="175dp"
-                android:textColor="#FF0000"/>
+                android:textColor="#FF0000"/>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_ingredients">
+            </android.support.v7.widget.RecyclerView>
 
             <ImageView
                 android:id="@+id/imageDetailsWarning"
@@ -435,7 +441,7 @@
 
 
         <!--Cookware-->
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -476,7 +482,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="175dp"/>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <View
             android:id="@+id/view4"
@@ -505,7 +511,7 @@
                 android:textColor="#000000"/>
 
             <!--Hard coding video part for now-->
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/imageStepVideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -515,9 +521,9 @@
                 android:layout_alignLeft="@+id/tvStepDetails"
                 android:layout_alignStart="@+id/tvStepDetails"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="17dp" />
+                android:layout_marginTop="17dp" />-->
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tvStep1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -572,7 +578,16 @@
                 android:textColor="#675E5E"
                 android:layout_marginTop="445dp"
                 android:layout_marginLeft="23dp"
-                android:layout_marginRight="7dp"/>
+                android:layout_marginRight="7dp"/>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_steps"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvStepDetails"
+                android:layout_marginTop="21dp">
+
+            </android.support.v7.widget.RecyclerView>
 
 
         </RelativeLayout>
