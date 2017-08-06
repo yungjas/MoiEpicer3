@@ -1,10 +1,17 @@
 package mapp.com.sg.moiepicer;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -48,13 +56,16 @@ public class Cooking extends AppCompatActivity {
     private TextView tvRecipeName;
     private NavigationView navigatorView;
     private DrawerLayout drawerLayout;
+    private ConstraintLayout timerViewGroup;
     private ScrollView scrollView;
-    private ImageButton btn_DoneCooking, btnStepGuide,btn_NextStep, btn_PreviousStep;
+    private ImageButton btn_DoneCooking, btnStepGuide, btn_NextStep, btn_PreviousStep, btn_timer;
     private RecyclerView rv_steps_drawer;
     private TextView tvStepDescription_Cooking,
-                        tvStepTitle,
-                        tvCurrentStepSeq,
-                        tvTotalStep;
+            tvStepTitle,
+            tvCurrentStepSeq,
+            tvTotalStep;
+
+    private TextView chronometer_timer;
 
     private Step currentStep;
     private FirebaseDatabase mfirebase = FirebaseDatabase.getInstance();
@@ -82,67 +93,52 @@ public class Cooking extends AppCompatActivity {
 //        }
 
         initialData();
-        initialUI();
 
+
+        //Testing
         mToCookList = DataHelper.getSampleData();
         currentRecipe = mToCookList.get(recipeIndex);
-        //StepRecycleView
         mRequiredStep = currentRecipe.getRequiredSteps();
-        currentStep =mRequiredStep.get(stepIndex);
+        currentStep = mRequiredStep.get(stepIndex);
+
+        initialUI();
+
+        //StepRecycleView
+
         //setupRecycleView
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv_steps_drawer.setLayoutManager(llm);
         StepAdapter adapter = new StepAdapter(mRequiredStep);
         rv_steps_drawer.setAdapter(adapter);
-        rv_steps_drawer.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                View child=rv.findChildViewUnder(e.getX(),e.getY());
-                int index = rv.getChildAdapterPosition(child);
-                if(index!=-1){
-                    stepIndex=index;
-                    currentStep=mRequiredStep.get(stepIndex);
-                    updateUI();
-                    child.getParent().requestDisallowInterceptTouchEvent(true);
-                    drawerLayout.closeDrawers();
-                }
-                return true;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
+//        rv_steps_drawer.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//            @Override
+//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//                View child = rv.findChildViewUnder(e.getX(), e.getY());
+//                int index = rv.getChildAdapterPosition(child);
+//                if (index != -1) {
+//                    stepIndex = index;
+//                    currentStep = mRequiredStep.get(stepIndex);
+//                    updateUI();
+//                    child.getParent().requestDisallowInterceptTouchEvent(true);
+//                    drawerLayout.closeDrawers();
+//                }
+//                return true;
+//            }
+//
+//            @Override
+//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//            }
+//        });
 
         adapter.setDataSet(mRequiredStep);
 
-
-        //set finish button
-        btn_DoneCooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Cooking.this, Summary.class);
-                Bundle b = new Bundle();
-                intent.putExtra("bundle", b);
-                b.putParcelableArrayList(Home.TOCOOKLIST, mToCookList);
-                startActivity(intent);
-            }
-        });
-
-        //set btnStepGuide
-        btnStepGuide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.START);
-            }
-        });
 
         //UpdateUI
         updateUI();
@@ -161,29 +157,25 @@ public class Cooking extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void updateUI() {
 
-        tvRecipeName.setText(currentRecipe.getName());
-        tvStepDescription_Cooking.setText(currentStep.getDescription());
-        tvStepTitle.setText(currentStep.getName());
-        tvCurrentStepSeq.setText(String.valueOf(stepIndex+1));
-        tvTotalStep.setText(String.valueOf(mRequiredStep.size()));
-
-    }
-
+    @TargetApi(Build.VERSION_CODES.N)
     private void initialUI() {
-        scrollView= (ScrollView) findViewById(R.id.sv_main_Cooking);
+        scrollView = (ScrollView) findViewById(R.id.sv_main_Cooking);
         tvRecipeName = (TextView) findViewById(R.id.tvRecipeName_Cooking);
         tvStepDescription_Cooking = (TextView) findViewById(R.id.tvStepDescription_Cooking);
-        tvCurrentStepSeq=(TextView) findViewById(R.id.tv_StepSeq_Cooking);
-        tvTotalStep =(TextView) findViewById(R.id.tv_totalStep_Cooking);
+        tvStepTitle = (TextView) findViewById(R.id.tv_StepTitle_Cooking);
+        tvCurrentStepSeq = (TextView) findViewById(R.id.tv_StepSeq_Cooking);
+        tvTotalStep = (TextView) findViewById(R.id.tv_totalStep_Cooking);
         navigatorView = (NavigationView) findViewById(R.id.navigator_cooking);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_cooking);
+        timerViewGroup = (ConstraintLayout) findViewById(R.id.component_timer_cooking);
         btn_DoneCooking = (ImageButton) findViewById(R.id.btn_DoneCooking);
-        btn_NextStep=(ImageButton)findViewById(R.id.btn_Next_Cooking);
+        btn_NextStep = (ImageButton) findViewById(R.id.btn_Next_Cooking);
         btn_PreviousStep = (ImageButton) findViewById(R.id.btn_Previous_Cooking);
         rv_steps_drawer = (RecyclerView) findViewById(R.id.rv_Steps_drawer);
         btnStepGuide = (ImageButton) findViewById(R.id.btnStepGuide);
+        btn_timer = (ImageButton) findViewById(R.id.btn_timer_cooking);
+        chronometer_timer = (TextView) findViewById((R.id.chronometer_cooking));
 
         //step spinner
         spToCookList = (Spinner) findViewById(R.id.spinnerCookRecipe);
@@ -215,35 +207,86 @@ public class Cooking extends AppCompatActivity {
 
 
         btn_PreviousStep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(stepIndex==0){
-                    Toast.makeText(Cooking.this,"You are at the first step",Toast.LENGTH_SHORT).show();
-                }else {
-                    stepIndex--;
-                    currentStep=mRequiredStep.get(stepIndex);
-                    scrollView.smoothScrollTo(0,0);
-                    updateUI();
-            }
-        }}
+                                                @Override
+                                                public void onClick(View v) {
+                                                    if (stepIndex == 0) {
+                                                        Snackbar.make(Cooking.this.getWindow().getDecorView().findViewById(android.R.id.content), "You are at the first step", 500).show();
+
+                                                    } else {
+                                                        stepIndex--;
+                                                        currentStep = mRequiredStep.get(stepIndex);
+                                                        scrollView.smoothScrollTo(0, 0);
+                                                        updateUI();
+                                                    }
+                                                }
+                                            }
         );
         btn_NextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(stepIndex==mRequiredStep.size()-1){
-                    Toast.makeText(Cooking.this,"You reach the last step",Toast.LENGTH_SHORT).show();
-                }else {
+                if (stepIndex == mRequiredStep.size() - 1) {
+//                    Toast.makeText(Cooking.this,"You reach the last step",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(Cooking.this.getWindow().getDecorView().findViewById(android.R.id.content), "Reach last step", 500).show();
+
+                } else {
+
                     stepIndex++;
-                    currentStep=mRequiredStep.get(stepIndex);
-                    scrollView.smoothScrollTo(0,0);
+                    currentStep = mRequiredStep.get(stepIndex);
+                    scrollView.smoothScrollTo(0, 0);
                     updateUI();
                 }
             }
         });
 
 
+        //set finish button
+        btn_DoneCooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Cooking.this, "Finishing Cooking", Toast.LENGTH_SHORT).show();
+                final Intent intent = new Intent(Cooking.this, Summary.class);
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bundle b = new Bundle();
+                        intent.putExtra("bundle", b);
+                        b.putParcelableArrayList(Home.TOCOOKLIST, mToCookList);
+                        startActivity(intent);
+                    }
+                });
+//
+            }
+        });
 
-        ;
+        //set btnStepGuide
+        btnStepGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.START);
+            }
+        });
+
+        btn_timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final long startTime = System.currentTimeMillis();
+                CountDownTimer elapsedTimer = new CountDownTimer(10000, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        long elapsedTime = l / 1000;
+                        chronometer_timer.setText(String.format("%02d", elapsedTime));
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        chronometer_timer.setText("Finished");
+                        Toast.makeText(Cooking.this.getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
+                    }
+                }.start();
+            }
+        });
+
+
     }
 
     private void initialData() {
@@ -254,6 +297,23 @@ public class Cooking extends AppCompatActivity {
 
         readFromFirebase();
 
+    }
+
+    private void updateUI() {
+
+        tvRecipeName.setText(currentRecipe.getName());
+        tvStepDescription_Cooking.setText(currentStep.getDescription());
+        tvStepTitle.setText(currentStep.getName());
+        tvCurrentStepSeq.setText(String.valueOf(stepIndex + 1));
+        tvTotalStep.setText(String.valueOf(mRequiredStep.size()));
+        if (currentStep.getTime() <= 1000) {
+            timerViewGroup.setVisibility(View.GONE);
+
+        } else {
+            timerViewGroup.setVisibility(View.VISIBLE);
+
+
+        }
     }
 
     private void readFromFirebase() {

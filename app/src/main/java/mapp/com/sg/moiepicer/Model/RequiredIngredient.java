@@ -23,7 +23,7 @@ public class RequiredIngredient implements Parcelable{
     }
 
     protected RequiredIngredient(Parcel in) {
-//        ingredient = in.readParcelable(Ingredient.class.getClassLoader());
+        ingredient = in.readParcelable(Ingredient.class.getClassLoader());
         amount = in.readInt();
         Unit = in.readString();
     }
@@ -47,7 +47,7 @@ public class RequiredIngredient implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeParcelable(ingredient, flags);
+        dest.writeParcelable(ingredient, flags);
         dest.writeInt(amount);
         dest.writeString(Unit);
     }

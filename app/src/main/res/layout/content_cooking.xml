@@ -8,8 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mapp.com.sg.moiepicer.Cooking"
     tools:showIn="@layout/activity_cooking">
-
-    <!--Cooking layout-->
+        <!--Cooking layout-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +40,7 @@
                 <!--Step Guide btn-->
 
                 <!--Recipe name-->
+
                 <TextView
                     android:id="@+id/tvRecipeName_Cooking"
                     android:layout_width="wrap_content"
@@ -135,6 +135,51 @@
                 <!--Hard coding the video for now-->
 
                 <!--Previous + next btn-->
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/component_timer_cooking"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btn_timer_cooking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/startbtn" />
+
+                    <TextView
+                        android:id="@+id/chronometer_cooking"
+                        android:layout_width="199dp"
+                        android:layout_height="26dp"
+                        android:layout_marginBottom="-1dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="0dp"
+                        android:text="00"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toTopOf="@+id/progressbar_ramaingTime_Cooking"
+                        app:layout_constraintHorizontal_bias="0.727"
+                        app:layout_constraintLeft_toLeftOf="@+id/progressbar_ramaingTime_Cooking"
+                        app:layout_constraintRight_toRightOf="@+id/progressbar_ramaingTime_Cooking" />
+
+                    <ProgressBar
+                        android:id="@+id/progressbar_ramaingTime_Cooking"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="196dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="-12dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="@+id/btn_timer_cooking"
+                        app:layout_constraintLeft_toRightOf="@+id/btn_timer_cooking" />
+                </android.support.constraint.ConstraintLayout>
+
                 <TextView
                     android:id="@+id/tvStepDescription_Cooking"
                     android:layout_width="match_parent"
@@ -249,8 +294,8 @@
                     android:id="@+id/btn_DoneCooking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/donecookingbtn" />
 

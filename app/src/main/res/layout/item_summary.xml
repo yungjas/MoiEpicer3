@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--Recipe pictures + buttons-->
+
+    <!--Time taken + notes-->
+
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="-1dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="9dp"
+        android:text="Time taken:"
+        android:textColor="#95989A"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_RecipeName_summary_item"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_Summary" />
+
+    <TextView
+        android:id="@+id/tvTimeTaken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/view2"
+        android:layout_alignRight="@+id/view2"
+        android:layout_marginBottom="-1dp"
+        android:layout_marginRight="-10dp"
+        android:text="25 mins"
+        android:textColor="#95989A"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_RecipeName_summary_item"
+        app:layout_constraintRight_toRightOf="@+id/editText_Summary" />
+
+    <EditText
+        android:id="@+id/editText_Summary"
+        android:layout_width="202dp"
+        android:layout_height="115dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/sumtextbox"
+        android:ems="10"
+        android:hint="Enter notes"
+        android:inputType="textPersonName"
+        android:textColor="#95989A"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_recipe_summary"
+        app:layout_constraintLeft_toRightOf="@+id/imageView_recipe_summary"
+        app:layout_constraintTop_toTopOf="@+id/imageView_recipe_summary"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tv_RecipeName_summary_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Recipe Name"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_recipe_summary"
+        android:layout_width="136dp"
+        android:layout_height="116dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_RecipeName_summary_item"
+        app:layout_constraintTop_toBottomOf="@+id/tv_RecipeName_summary_item"
+        app:srcCompat="@android:drawable/btn_star" />
+
+    <ImageView
+        android:id="@+id/iv_favourite_summary_item"
+        android:layout_width="136dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_recipe_summary"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView_recipe_summary"
+        app:srcCompat="@drawable/rectangle" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnSumHeart"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/btnSumHeart"
+        android:layout_toRightOf="@+id/btnSumHeart"
+        android:text="Favourite"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_favourite_summary_item"
+        app:layout_constraintLeft_toRightOf="@+id/imageButton4"
+        app:layout_constraintRight_toRightOf="@+id/iv_favourite_summary_item"
+        app:layout_constraintTop_toTopOf="@+id/iv_favourite_summary_item" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_favourite_summary_item"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_favourite_summary_item"
+        app:layout_constraintTop_toTopOf="@+id/iv_favourite_summary_item"
+        app:srcCompat="@drawable/heart" />
+
+</android.support.constraint.ConstraintLayout>

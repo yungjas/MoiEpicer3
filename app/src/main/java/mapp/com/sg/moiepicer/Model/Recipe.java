@@ -43,10 +43,10 @@ public class Recipe implements Parcelable {
         dish = in.readString();
         description = in.readString();
         duration = in.readInt();
-        requiredIngredient=new ArrayList<RequiredIngredient>();
-        in.readTypedList( requiredIngredient, RequiredIngredient.CREATOR);
         requiredSteps=new ArrayList<Step>();
-        in.readTypedList( requiredSteps, Step.CREATOR);
+        in.readList( requiredSteps, Step.class.getClassLoader());
+        requiredIngredient=new ArrayList<RequiredIngredient>();
+        in.readList( requiredIngredient, RequiredIngredient.class.getClassLoader());
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -113,8 +113,8 @@ public class Recipe implements Parcelable {
         dest.writeString(dish);
         dest.writeString(description);
         dest.writeInt(duration);
-        dest.writeList(requiredIngredient);
         dest.writeList(requiredSteps);
+        dest.writeList(requiredIngredient);
 
     }
 
