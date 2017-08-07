@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import mapp.com.sg.moiepicer.Model.Recipe;
@@ -80,6 +82,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 Toast.makeText(v.getContext() ,"Added Recipe: " + addRecipe.getName() , Toast.LENGTH_SHORT).show();
             }
         });
+        if(!recipe.getUrl().isEmpty())
+        Glide.with(holder.imageView_recipe.getContext()).load(recipe.getUrl()).into(holder.imageView_recipe);
 
         holder.imageView_recipe.setOnClickListener(new View.OnClickListener() {
             @Override

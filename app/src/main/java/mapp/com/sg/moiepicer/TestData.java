@@ -2,12 +2,17 @@ package mapp.com.sg.moiepicer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import junit.framework.Test;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,7 +36,7 @@ import mapp.com.sg.moiepicer.Model.Recipe;
 import mapp.com.sg.moiepicer.Model.RequiredIngredient;
 import mapp.com.sg.moiepicer.Model.Step;
 
-public class TestData extends AppCompatActivity {
+public class TestData extends Fragment {
     public static final String TOCOOKLIST = "TOCOOK";
     private final FirebaseDatabase mFireBase = FirebaseDatabase.getInstance();
     private final DatabaseReference mRootRef = mFireBase.getReference();
@@ -39,23 +46,31 @@ public class TestData extends AppCompatActivity {
     private ArrayList<Recipe> toViewList = new ArrayList<Recipe>();
     protected ArrayList<Recipe> toCookList = new ArrayList<Recipe>();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_data);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    public static TestData newInstance(int page, String title,ArrayList<Recipe> toCookList){
+        TestData  fragmentFirst = new TestData();
+        if (toCookList == null) {
+            fragmentFirst.toViewList = new ArrayList<Recipe>();
+        } else {
+            fragmentFirst.toCookList = toCookList;
+        }
+        return fragmentFirst;
+    }
 
-        final ImageButton searchButton = (ImageButton) findViewById(R.id.searchRecipeBtn);
-        final TextView searchText = (TextView) findViewById(R.id.searchText);
-        final Spinner levelSpinner = (Spinner) findViewById(R.id.levelSpinner);
-        final Spinner cuisineSpinner = (Spinner) findViewById(R.id.cuisineSpinner);
-        final Spinner styleSpinner = (Spinner) findViewById(R.id.styleSpinner);
-        final Spinner timeSpinner = (Spinner) findViewById(R.id.timeSpinner);
-        final ArrayAdapter<CharSequence> levelAdapter = ArrayAdapter.createFromResource(this, R.array.levels,android.R.layout.simple_spinner_item);
-        final ArrayAdapter<CharSequence> cuisineAdapter = ArrayAdapter.createFromResource(this, R.array.cuisine,android.R.layout.simple_spinner_item);
-        final ArrayAdapter<CharSequence> styleAdapter = ArrayAdapter.createFromResource(this, R.array.style,android.R.layout.simple_spinner_item);
-        final ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(this, R.array.time,android.R.layout.simple_spinner_item);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_test_data,container,false);
+
+        final ImageButton searchButton = (ImageButton)view.findViewById(R.id.searchRecipeBtn);
+        final TextView searchText = (TextView) view.findViewById(R.id.searchText);
+        final Spinner levelSpinner = (Spinner) view.findViewById(R.id.levelSpinner);
+        final Spinner cuisineSpinner = (Spinner) view.findViewById(R.id.cuisineSpinner);
+        final Spinner styleSpinner = (Spinner) view.findViewById(R.id.styleSpinner);
+        final Spinner timeSpinner = (Spinner) view.findViewById(R.id.timeSpinner);
+        final ArrayAdapter<CharSequence> levelAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.levels,android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> cuisineAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.cuisine,android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> styleAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.style,android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.time,android.R.layout.simple_spinner_item);
 
         //Setting up adapters
         levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -74,9 +89,9 @@ public class TestData extends AppCompatActivity {
         final DatabaseReference mStepRef = mRootRef.child("RequiredStep");
 
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.testDataRV);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.testDataRV);
         recyclerView.setLayoutManager(llm);
         recyclerView.setHasFixedSize(false);
 
@@ -103,11 +118,11 @@ public class TestData extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshotI) {
                             //Ingredient Lists here (R1, R2)
                             for (DataSnapshot childSnapshotI : dataSnapshotI.getChildren()) {
-                            //Log.i(TAG_RECIPE,cChildSnapshotI.getValue(RequiredIngredient.class).getIngredient().getName());
-                            RequiredIngredient reqI = new RequiredIngredient(childSnapshotI.child("Ingredient").getValue(Ingredient.class),
-                                    childSnapshotI.child("Amount").getValue(String.class),
-                                    childSnapshotI.child("Unit").getValue(String.class));
-                            rIngredientList.add(reqI);
+                                //Log.i(TAG_RECIPE,cChildSnapshotI.getValue(RequiredIngredient.class).getIngredient().getName());
+                                RequiredIngredient reqI = new RequiredIngredient(childSnapshotI.child("Ingredient").getValue(Ingredient.class),
+                                        childSnapshotI.child("Amount").getValue(String.class),
+                                        childSnapshotI.child("Unit").getValue(String.class));
+                                rIngredientList.add(reqI);
                                 Log.i(TAG_RECIPE, "Recipe Ingredients: " + reqI.getIngredient().getName());
                             }
                         }
@@ -165,6 +180,14 @@ public class TestData extends AppCompatActivity {
             }
         });
 
+
+        return view;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         /*
         Log.i(TAG_RECIPE, "All the recipe: ");
         Log.i(TAG_RECIPE, String.valueOf(finalRecipeList.size()));
@@ -179,6 +202,14 @@ public class TestData extends AppCompatActivity {
                 Log.i(TAG_RECIPE, rs.getName());
             }
         }*/
+    }
+
+    public ArrayList<Recipe> getToCookList (){
+        return  toCookList ;
+    }
+
+    public void setTocooklist(ArrayList<Recipe> toCookList){
+        this.toCookList=toCookList;
     }
 
 }

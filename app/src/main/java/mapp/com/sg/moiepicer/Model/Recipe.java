@@ -15,6 +15,13 @@ public class Recipe implements Parcelable {
     private String uID;
     private String name;
     private String dish;
+    private String url;
+
+
+    public String getUrl() {
+        return url;
+    }
+
     private String description;
     private int duration;
     private ArrayList<Step> requiredSteps=null;
@@ -36,6 +43,7 @@ public class Recipe implements Parcelable {
         this.name = recipe.getName();
         this.dish = recipe.getDish();
         this.description = recipe.getDescription();
+        this.url = recipe.getUrl();
         this.duration = recipe.getDuration();
         this.requiredIngredient = requiredIngredient;
         this.requiredSteps = requiredSteps;
@@ -46,6 +54,7 @@ public class Recipe implements Parcelable {
         name = in.readString();
         dish = in.readString();
         description = in.readString();
+        url=in.readString();
         duration = in.readInt();
         requiredSteps=new ArrayList<Step>();
         in.readList( requiredSteps, Step.class.getClassLoader());
@@ -116,6 +125,7 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeString(dish);
         dest.writeString(description);
+        dest.writeString(url);
         dest.writeInt(duration);
         dest.writeList(requiredSteps);
         dest.writeList(requiredIngredient);

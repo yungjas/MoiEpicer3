@@ -19,6 +19,12 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import junit.framework.Test;
+
+import java.util.ArrayList;
+
+import mapp.com.sg.moiepicer.Model.Recipe;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -35,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    private TabLayout tabLayout;
+    private ArrayList<Fragment> fragments =new  ArrayList<>();
+    private ArrayList<Recipe> mToCookList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +58,25 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+            }
 
-        setUpTabIcons();
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+//        setUpTabIcons();
 
         //getSupportActionBar().setTitle("Home");
 
@@ -79,19 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
                switch (position){
                    case 0:
-                       setTitle("Profile");
-                       break;
-                   case 1:
-                       setTitle("Search");
-                       break;
-                   case 2:
                        setTitle("Home");
-                       break;
-                   case 3:
-                       setTitle("History");
-                       break;
-                   case 4:
-                       setTitle("Create");
                        break;
                }
 
@@ -106,13 +115,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Set up icons in navigation bar
-    private void setUpTabIcons(){
-        tabLayout.getTabAt(0).setIcon(R.drawable.tab_user);
-        tabLayout.getTabAt(1).setIcon(R.drawable.tab_search);
-        tabLayout.getTabAt(2).setIcon(R.drawable.tab_home);
-        tabLayout.getTabAt(3).setIcon(R.drawable.tab_history);
-        tabLayout.getTabAt(4).setIcon(R.drawable.tab_create);
-    }
+//    private void setUpTabIcons(){
+//        tabLayout.getTabAt(0).setIcon(R.drawable.tab_search);
+//        tabLayout.getTabAt(1).setIcon(R.drawable.tab_home);
+//    }
 
 
     @Override
@@ -170,23 +176,13 @@ public class MainActivity extends AppCompatActivity {
 
             //display current selected tab layout
             switch(getArguments().getInt(ARG_SECTION_NUMBER)){
-                case 1:
-                    rootView = inflater.inflate(R.layout.activity_user, container, false);
-                    break;
-                case 2:
-                    rootView = inflater.inflate(R.layout.activity_search, container, false);
-                    break;
-                case 3:
+                case 0:
                     rootView = inflater.inflate(R.layout.activity_home, container, false);
                     break;
-                case 4:
-                    rootView = inflater.inflate(R.layout.activity_history, container, false);
-                    break;
-                case 5:
-                    rootView = inflater.inflate(R.layout.activity_create, container, false);
+                case 1:
+                    rootView = inflater.inflate(R.layout.activity_search, container, false);
                     break;
             }
-
             return rootView;
         }
     }
@@ -196,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private static final int NUM_ITESM=2;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -205,13 +202,35 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0: // Fragment # 0 - This will show FirstFragment
+                    if(fragments.size()==0){
+                        fragments.add(Home.newInstance(0,"Home",null));
+                    }else{
+                        Home home = (Home) fragments.get(0);
+
+                        home.setTocooklist(((TestData)fragments.get(1)).getToCookList());
+                        home.recyclerView.getAdapter().notifyDataSetChanged();
+                    }
+                    return  fragments.get(0);
+                case 1:
+                    if(fragments.size()==1){
+                        fragments.add(TestData.newInstance(0,"Search",null));
+                    }else{
+                        TestData data = (TestData) fragments.get(1);
+                        data.setTocooklist(((TestData)fragments.get(0)).getToCookList());
+                    }
+                    return  fragments.get(1);
+                default:
+                    return null;
+            }
+
         }
 
         @Override
         public int getCount() {
             // Show 5 total pages.
-            return 5;
+            return 2;
         }
 
         //Set up the titles for each icon
@@ -219,17 +238,12 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Profile";
+                    return "Home";
                 case 1:
                     return "Search";
-                case 2:
-                    return "Home";
-                case 3:
-                    return "History";
-                case 4:
-                    return "Create";
+                default:
+                    return null;
             }
-            return null;
         }
     }
 }

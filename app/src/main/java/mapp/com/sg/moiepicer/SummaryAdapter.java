@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.ImageHeaderParser;
+
 import java.util.ArrayList;
 
 import mapp.com.sg.moiepicer.Model.Recipe;
@@ -24,6 +27,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         protected TextView tvRecipeName,tvTimeTaken;
         protected ImageView iv_favourite;
         protected EditText ETxt ;
+        protected ImageView imageView_Recipe;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -32,6 +36,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
             tvTimeTaken =(TextView) itemView.findViewById(R.id.tvTimeTaken);
             iv_favourite=(ImageView) itemView.findViewById(R.id.iv_favourite_summary_item);
             ETxt = (EditText) itemView.findViewById(R.id.editText_Summary);
+            imageView_Recipe =(ImageView) itemView.findViewById(R.id.imageView_recipe_summary);
 
         }
     }
@@ -47,6 +52,8 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         Recipe recipe = mDataSet.get(position);
         holder.tvRecipeName.setText(recipe.getName());
+        if(!recipe.getUrl().isEmpty())
+            Glide.with(holder.imageView_Recipe.getContext()).load(recipe.getUrl()).into(holder.imageView_Recipe);
     }
 
     @Override

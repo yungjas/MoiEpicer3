@@ -70,9 +70,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-            Glide.with(holder.imageView_recipe.getContext()).load("https://firebasestorage.googleapis.com/v0/b/first-firebase-project-c6d2e.appspot.com/o/steamed_egg_in_earthenware_bow.jpg?alt=media&token=b12165b4-43ac-48ea-a523-6b63eeb1597e")
-                .into(holder.imageView_recipe);
+
         Recipe recipe =  mDataset.get(position);
+        if(recipe.getUrl()!=null){
+            Glide.with(holder.imageView_recipe.getContext()).load(recipe.getUrl())
+                    .into(holder.imageView_recipe);
+        }
         holder.tvRecipeName.setText(recipe.getName());
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,5 +113,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public  void setmDataset(ArrayList<Recipe> toCookList){
+        mDataset =toCookList;
+        notifyDataSetChanged();
     }
 }
