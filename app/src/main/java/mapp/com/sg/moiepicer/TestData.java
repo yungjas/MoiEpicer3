@@ -45,6 +45,7 @@ public class TestData extends Fragment {
     private ArrayList<Recipe> finalRecipeList = new ArrayList<Recipe>();
     private ArrayList<Recipe> toViewList = new ArrayList<Recipe>();
     protected ArrayList<Recipe> toCookList = new ArrayList<Recipe>();
+    RecyclerView recyclerView;
 
     public static TestData newInstance(int page, String title,ArrayList<Recipe> toCookList){
         TestData  fragmentFirst = new TestData();
@@ -91,7 +92,7 @@ public class TestData extends Fragment {
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.testDataRV);
+         recyclerView = (RecyclerView) view.findViewById(R.id.testDataRV);
         recyclerView.setLayoutManager(llm);
         recyclerView.setHasFixedSize(false);
 
@@ -205,11 +206,11 @@ public class TestData extends Fragment {
     }
 
     public ArrayList<Recipe> getToCookList (){
-        return  toCookList ;
+        return  ((SearchAdapter)recyclerView.getAdapter()).getToCookList();
     }
 
     public void setTocooklist(ArrayList<Recipe> toCookList){
-        this.toCookList=toCookList;
+        ((SearchAdapter)recyclerView.getAdapter()).setToCookList(toCookList);
     }
 
 }

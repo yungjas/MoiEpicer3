@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    private ArrayList<Fragment> fragments =new  ArrayList<>();
+    private ArrayList<Fragment> fragments = new ArrayList<>();
     private ArrayList<Recipe> mToCookList;
 
     @Override
@@ -66,12 +67,26 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                Log.i("TEsting", "Page selected" + position);
+                switch (position) {
+                    case 0:
+                        Log.i("TEsting", "case 1");
+                        Home home = (Home) fragments.get(0);
+                        if (fragments.size() == 2)
+                            home.setTocooklist(((TestData) fragments.get(1)).getToCookList());
+                        home.recyclerView.getAdapter().notifyDataSetChanged();
+                        break;
+                    case 1:
+                        Log.i("TEsting", "case 2");
+                        TestData data = (TestData) fragments.get(1);
+                        data.setTocooklist(((Home) fragments.get(0)).getToCookList());
+                        break;
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+//                Log.i("TEsting" ,"Page scrollState" +state);
             }
         });
 
@@ -98,11 +113,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-               switch (position){
-                   case 0:
-                       setTitle("Home");
-                       break;
-               }
+                switch (position) {
+                    case 0:
+                        setTitle("Home");
+                        break;
+                }
 
             }
 
@@ -170,12 +185,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         View rootView;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
             //display current selected tab layout
-            switch(getArguments().getInt(ARG_SECTION_NUMBER)){
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 0:
                     rootView = inflater.inflate(R.layout.activity_home, container, false);
                     break;
@@ -192,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private static final int NUM_ITESM=2;
+        private static final int NUM_ITESM = 2;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -204,23 +220,23 @@ public class MainActivity extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    if(fragments.size()==0){
-                        fragments.add(Home.newInstance(0,"Home",null));
-                    }else{
+                    if (fragments.size() == 0) {
+                        fragments.add(Home.newInstance(0, "Home", null));
+                    } else {
                         Home home = (Home) fragments.get(0);
 
-                        home.setTocooklist(((TestData)fragments.get(1)).getToCookList());
+                        home.setTocooklist(((TestData) fragments.get(1)).getToCookList());
                         home.recyclerView.getAdapter().notifyDataSetChanged();
                     }
-                    return  fragments.get(0);
+                    return fragments.get(0);
                 case 1:
-                    if(fragments.size()==1){
-                        fragments.add(TestData.newInstance(0,"Search",null));
-                    }else{
+                    if (fragments.size() == 1) {
+                        fragments.add(TestData.newInstance(0, "Search", null));
+                    } else {
                         TestData data = (TestData) fragments.get(1);
-                        data.setTocooklist(((TestData)fragments.get(0)).getToCookList());
+                        data.setTocooklist(((TestData) fragments.get(0)).getToCookList());
                     }
-                    return  fragments.get(1);
+                    return fragments.get(1);
                 default:
                     return null;
             }

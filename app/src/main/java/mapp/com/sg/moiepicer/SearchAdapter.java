@@ -1,6 +1,7 @@
 package mapp.com.sg.moiepicer;
 
 import android.content.Intent;
+import android.support.v4.util.ArraySet;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,7 +97,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
                 holder.imageView_recipe.getContext().startActivity(intent);
             }
-        });
+        })  ;
 
 
 
@@ -112,7 +113,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public int getItemCount() {
         return mDataset.size();
     }
+    public ArrayList<Recipe> getToCookList(){
+        return  toCookList;
+    }
 
+    public void setToCookList(ArrayList<Recipe> toCookList){
+        this.toCookList =toCookList;
+
+    }
 
 
 
