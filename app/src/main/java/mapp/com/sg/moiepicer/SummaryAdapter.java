@@ -33,7 +33,6 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
             super(itemView);
 
             tvRecipeName = (TextView)itemView.findViewById(R.id.tv_RecipeName_summary_item);
-            tvTimeTaken =(TextView) itemView.findViewById(R.id.tvTimeTaken);
             iv_favourite=(ImageView) itemView.findViewById(R.id.iv_favourite_summary_item);
             ETxt = (EditText) itemView.findViewById(R.id.editText_Summary);
             imageView_Recipe =(ImageView) itemView.findViewById(R.id.imageView_recipe_summary);

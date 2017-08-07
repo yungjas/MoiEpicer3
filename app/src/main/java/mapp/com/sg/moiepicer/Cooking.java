@@ -101,7 +101,6 @@ public class Cooking extends AppCompatActivity {
 
 
         //Testing
-        mToCookList = DataHelper.getSampleData();
         currentRecipe = mToCookList.get(recipeIndex);
         mRequiredStep = currentRecipe.getRequiredSteps();
         currentStep = mRequiredStep.get(stepIndex);
@@ -114,30 +113,30 @@ public class Cooking extends AppCompatActivity {
         rv_steps_drawer.setLayoutManager(llm);
         StepAdapter adapter = new StepAdapter(mRequiredStep);
         rv_steps_drawer.setAdapter(adapter);
-        rv_steps_drawer.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                View child = rv.findChildViewUnder(e.getX(), e.getY());
-                int index = rv.getChildAdapterPosition(child);
-                if (index != -1) {
-                    stepIndex = index;
-                    currentStep = mRequiredStep.get(stepIndex);
-                    updateUI();
-                    child.getParent().requestDisallowInterceptTouchEvent(true);
-                    drawerLayout.closeDrawers();
-                }
-                return true;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-            }
-        });
+//        rv_steps_drawer.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//            @Override
+//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//                View child = rv.findChildViewUnder(e.getX(), e.getY());
+//                int index = rv.getChildAdapterPosition(child);
+//                if (index != -1) {
+//                    stepIndex = index;
+//                    currentStep = mRequiredStep.get(stepIndex);
+//                    updateUI();
+//                    child.getParent().requestDisallowInterceptTouchEvent(true);
+//                    drawerLayout.closeDrawers();
+//                }
+//                return true;
+//            }
+//
+//            @Override
+//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//            }
+//        });
         adapter.setDataSet(mRequiredStep);
         //UpdateUI
         updateUI();
@@ -313,9 +312,6 @@ public class Cooking extends AppCompatActivity {
         Intent inten = this.getIntent();
         Bundle b = inten.getBundleExtra("bundle");
         mToCookList = b.getParcelableArrayList(Home.TOCOOKLIST);
-
-        readFromFirebase();
-
     }
 
     private void updateUI() {
@@ -327,81 +323,21 @@ public class Cooking extends AppCompatActivity {
         tvCurrentStepSeq.setText(String.valueOf(stepIndex + 1));
         if (stepIndex == 0) {
             imageView_Recipe.setVisibility(View.VISIBLE);
-            Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/first-firebase-project-c6d2e.appspot.com/o/steamed_egg_in_earthenware_bow.jpg?alt=media&token=b12165b4-43ac-48ea-a523-6b63eeb1597e")
+            Glide.with(this).load(currentRecipe.getUrl())
                     .into(imageView_Recipe);
         } else {
             imageView_Recipe.setVisibility(View.GONE);
         }
-        if (currentStep.getTime() <= 1000) {
+        if (currentStep.getTime() <= 999) {
             timerViewGroup.setVisibility(View.GONE);
-
         } else {
             timerViewGroup.setVisibility(View.VISIBLE);
             progressBarTimer.setMax(currentStep.getTime());
+            chronometer_timer.setText(String.format("%02d m: %02d s",currentStep.getTime()/60000,(currentStep.getTime()%60000)/1000));
 
         }
     }
 
-    private void readFromFirebase() {
-        for (final Recipe recipe : mToCookList) {
-            boolean isCompleted = false;
-            if (recipe.getRequiredSteps().isEmpty()) {
-                isCompleted = false;
-                mRequiredStepRef.child(recipe.getUID()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        ArrayList<Step> requiredStep = new ArrayList<Step>();
-                        Step step;
-                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                            step = childSnapshot.getValue(Step.class);
-                            requiredStep.add(step);
-                            Log.i(TAG_RECIPE, childSnapshot.getValue(Step.class).getName());
-                        }
-                        Log.i(TAG_RECIPE, "For Recipe :" + recipe.getName());
-                        recipe.setRequiredSteps(requiredStep);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-            }
-
-
-            if (recipe.getRequiredIngredient() == null || recipe.getRequiredIngredient().isEmpty()) {
-
-                final ArrayList<RequiredIngredient> requiredIngredientArrayList = new ArrayList<>();
-                mRequiredIngredientRef
-                        .child(recipe.getUID())
-                        .addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                                    String amount = childSnapshot.child("Amount").getValue(String.class);
-                                    String unit = childSnapshot.child("Unit").getValue(String.class);
-                                    Ingredient ingredient = childSnapshot.child("Ingredient").getValue(Ingredient.class);
-                                    RequiredIngredient requiredIngredient = new RequiredIngredient(ingredient, amount, unit);
-                                    requiredIngredientArrayList.add(requiredIngredient);
-                                    Log.i(TAG_RECIPE, "Required Ingredient" +
-                                            "\t" + requiredIngredient.getIngredient().getName() +
-                                            "\t" + requiredIngredient.getAmount() +
-                                            "\t" + requiredIngredient.getUnit());
-                                }
-                                recipe.setRequiredIngredient(requiredIngredientArrayList);
-                                Log.i(TAG_RECIPE, "For Recipe :" + recipe.getName());
-                                Log.i(TAG_RECIPE, "finished Step: " + dataSnapshot.getKey());
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                Log.w(TAG_RECIPE, "Fail to load Ingredient");
-                            }
-                        });
-            }
-        }
-    }
 
 
     private class RecipeSpinnerAdapter extends ArrayAdapter<Recipe> {

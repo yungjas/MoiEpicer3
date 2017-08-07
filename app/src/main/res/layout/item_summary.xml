@@ -9,34 +9,6 @@
     <!--Time taken + notes-->
 
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="-1dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="9dp"
-        android:text="Time taken:"
-        android:textColor="#95989A"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_RecipeName_summary_item"
-        app:layout_constraintLeft_toLeftOf="@+id/editText_Summary" />
-
-    <TextView
-        android:id="@+id/tvTimeTaken"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/view2"
-        android:layout_alignRight="@+id/view2"
-        android:layout_marginBottom="-1dp"
-        android:layout_marginRight="-10dp"
-        android:text="25 mins"
-        android:textColor="#95989A"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_RecipeName_summary_item"
-        app:layout_constraintRight_toRightOf="@+id/editText_Summary" />
-
     <EditText
         android:id="@+id/editText_Summary"
         android:layout_width="202dp"

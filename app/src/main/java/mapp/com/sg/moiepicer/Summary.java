@@ -65,9 +65,7 @@ public class Summary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Summary.this, "Saved Completed", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Summary.this, Home.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                finish();
             }
         });
     }

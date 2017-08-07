@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -74,11 +75,16 @@ public class Home extends Fragment {
         btnStartCooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), Cooking.class);
-                Bundle b = new Bundle();
-                b.putParcelableArrayList(TOCOOKLIST, Home.this.toCookList);
-                intent.putExtra("bundle", b);
-                Home.this.startActivity(intent);
+                if(toCookList!=null&&toCookList.size()!=0){
+                    Intent intent = new Intent(view.getContext(), Cooking.class);
+                    Bundle b = new Bundle();
+                    b.putParcelableArrayList(TOCOOKLIST, Home.this.toCookList);
+                    intent.putExtra("bundle", b);
+                    Home.this.startActivity(intent);
+                }else{
+                    Toast.makeText(getContext(), "Please procedd search to add recipe", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

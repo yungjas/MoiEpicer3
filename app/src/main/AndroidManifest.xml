@@ -58,7 +58,8 @@
         <activity
             android:name=".Cooking"
             android:label="@string/title_activity_cooking"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true"/>
         <activity
             android:name=".Testing"
             android:label="Testing"

@@ -106,9 +106,10 @@ public class TestData extends Fragment {
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 Log.i(TAG_RECIPE, dataSnapshot.getKey()); //Prints Recipe
                 //Recipe here (R1, R2)
-                final ArrayList<RequiredIngredient> rIngredientList = new ArrayList<RequiredIngredient>();
-                final ArrayList<Step> rStepList = new ArrayList<Step>();
+
                 for (final DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    final ArrayList<RequiredIngredient> rIngredientList = new ArrayList<RequiredIngredient>();
+                    final ArrayList<Step> rStepList = new ArrayList<Step>();
                     final Recipe recipe = childSnapshot.getValue(Recipe.class);
                     recipeID = recipe.getUID();
                     Log.i(TAG_RECIPE, recipe.getName());
