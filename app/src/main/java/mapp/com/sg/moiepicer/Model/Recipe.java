@@ -31,10 +31,14 @@ public class Recipe implements Parcelable {
         this.duration = duration;
     }
 
-    public Recipe(String name, String dish, String description) {
-        this.name = name;
-        this.dish = dish;
-        this.description = description;
+    public Recipe(Recipe recipe, ArrayList<RequiredIngredient> requiredIngredient, ArrayList<Step> requiredSteps) {
+        this.uID = recipe.getUID();
+        this.name = recipe.getName();
+        this.dish = recipe.getDish();
+        this.description = recipe.getDescription();
+        this.duration = recipe.getDuration();
+        this.requiredIngredient = requiredIngredient;
+        this.requiredSteps = requiredSteps;
     }
 
     protected Recipe(Parcel in) {
