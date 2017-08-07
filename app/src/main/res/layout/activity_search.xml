@@ -25,20 +25,21 @@
                 android:inputType="textPersonName"
                 android:text=""
                 android:hint="Enter the keyword"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/btnBlackSearch"
+                android:layout_toStartOf="@+id/btnBlackSearch" />
 
             <ImageButton
                 android:id="@+id/btnBlackSearch"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/editText6"
                 app:srcCompat="@drawable/blacksearch"
                 android:background="@android:color/transparent"
-                android:layout_marginRight="37dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginRight="38dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="38dp" />
         </RelativeLayout>
 
         <!--Level-->
@@ -51,28 +52,28 @@
                 android:id="@+id/tvLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="15dp"
                 android:text="Level"
                 android:textColor="#000000"
-                android:textSize="17dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginTop="15dp"/>
+                android:textSize="17dp" />
 
             <Spinner
                 android:id="@+id/levelSpinner"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="73dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginLeft="73dp"/>
+                android:layout_weight="0.27" />
 
             <CheckBox
                 android:id="@+id/checkAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="All"
+                android:layout_marginLeft="70dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginLeft="70dp"/>
+                android:layout_weight="1"
+                android:text="All" />
         </LinearLayout>
 
         <!--Cuisine-->
@@ -85,28 +86,28 @@
                 android:id="@+id/tvCuisine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="15dp"
                 android:text="Cuisine"
                 android:textColor="#000000"
-                android:textSize="17dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginTop="15dp"/>
+                android:textSize="17dp" />
 
             <Spinner
                 android:id="@+id/cuisineSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="56dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginLeft="56dp"/>
+                android:layout_weight="1" />
 
             <CheckBox
                 android:id="@+id/checkMyRecipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="My Recipe"
+                android:layout_marginLeft="70dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginLeft="70dp"/>
+                android:layout_weight="1"
+                android:text="My Recipe" />
 
         </LinearLayout>
 
@@ -154,28 +155,28 @@
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="15dp"
                 android:text="Time"
                 android:textColor="#000000"
-                android:textSize="17dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginTop="15dp"/>
+                android:textSize="17dp" />
 
             <Spinner
                 android:id="@+id/timeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="73dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginLeft="73dp"/>
+                android:layout_weight="1" />
 
             <CheckBox
                 android:id="@+id/checkTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Top recipe"
+                android:layout_marginLeft="71dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginLeft="71dp"/>
+                android:layout_weight="1"
+                android:text="Top recipe" />
         </LinearLayout>
 
         <!--Result-->
@@ -198,11 +199,11 @@
                 android:id="@+id/tvResultNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(1)"
-                android:textSize="21dp"
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="15dp"
-                android:textColor="#000000"/>
+                android:text="(1)"
+                android:textColor="#000000"
+                android:textSize="21dp" />
 
         </LinearLayout>
 
@@ -236,21 +237,21 @@
                 android:id="@+id/imageSearchRecipe"
                 android:layout_width="308dp"
                 android:layout_height="167dp"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/btn_star"
-                android:background="@android:color/darker_gray"
                 android:layout_marginLeft="29dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                app:srcCompat="@android:drawable/btn_star" />
 
             <!--Time-->
             <ImageView
                 android:id="@+id/box1"
                 android:layout_width="110dp"
                 android:layout_height="40dp"
-                android:layout_alignTop="@+id/imageSearchRecipe"
-                app:srcCompat="@drawable/rectangle"
                 android:layout_alignLeft="@+id/imageSearchRecipe"
-                android:layout_alignStart="@+id/imageSearchRecipe" />
+                android:layout_alignStart="@+id/imageSearchRecipe"
+                android:layout_alignTop="@+id/imageSearchRecipe"
+                app:srcCompat="@drawable/rectangle" />
 
             <ImageView
                 android:id="@+id/imageSearchTime"
@@ -259,9 +260,9 @@
                 android:layout_alignBottom="@+id/box1"
                 android:layout_alignLeft="@+id/imageSearchRecipe"
                 android:layout_alignStart="@+id/imageSearchRecipe"
-                app:srcCompat="@drawable/time"
+                android:layout_marginBottom="7dp"
                 android:layout_marginLeft="9dp"
-                android:layout_marginBottom="7dp"/>
+                app:srcCompat="@drawable/time" />
 
             <TextView
                 android:id="@+id/tvTimeSearch"
@@ -270,23 +271,23 @@
                 android:layout_alignBottom="@+id/imageSearchTime"
                 android:layout_alignEnd="@+id/box1"
                 android:layout_alignRight="@+id/box1"
+                android:layout_marginBottom="3dp"
                 android:layout_marginEnd="7dp"
                 android:layout_marginRight="6dp"
                 android:text="TextView"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="3dp" />
+                android:textColor="@android:color/white" />
 
             <!--fav and add button-->
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="110dp"
                 android:layout_height="40dp"
+                android:layout_alignEnd="@+id/imageSearchRecipe"
                 android:layout_alignLeft="@+id/imageSearchRecipe"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/imageSearchRecipe"
-                app:srcCompat="@drawable/rectangle"
                 android:layout_alignRight="@+id/imageSearchRecipe"
-                android:layout_alignEnd="@+id/imageSearchRecipe" />
+                android:layout_alignStart="@+id/imageSearchRecipe"
+                app:srcCompat="@drawable/rectangle" />
 
             <ImageButton
                 android:id="@+id/imageSearchHeart"
@@ -294,32 +295,32 @@
                 android:layout_height="23dp"
                 android:layout_alignLeft="@+id/imageSearchTime"
                 android:layout_alignStart="@+id/imageSearchTime"
-                android:layout_marginLeft="13dp"
-                app:srcCompat="@drawable/heart"
-                android:layout_marginTop="140dp"
                 android:layout_alignTop="@+id/imageView10"
-                android:background="@android:color/transparent"/>
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="140dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/heart" />
 
             <TextView
                 android:id="@+id/tvFav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/imageSearchHeart"
+                android:layout_marginBottom="4dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@+id/imageSearchHeart"
                 android:layout_toRightOf="@+id/imageSearchHeart"
                 android:text="Favourite"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="4dp"/>
+                android:textColor="@android:color/white" />
 
             <View
+                android:id="@+id/view"
                 android:layout_width="1dp"
                 android:layout_height="21dp"
-                android:background="@android:color/white"
-                android:layout_marginTop="140dp"
                 android:layout_marginLeft="180dp"
-                android:id="@+id/view" />
+                android:layout_marginTop="140dp"
+                android:background="@android:color/white" />
 
             <ImageButton
                 android:id="@+id/imageAddCook"
@@ -329,20 +330,20 @@
                 android:layout_marginTop="138dp"
                 android:layout_toEndOf="@+id/view"
                 android:layout_toRightOf="@+id/view"
-                app:srcCompat="@drawable/add_to_cook_list"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/add_to_cook_list" />
 
             <TextView
                 android:id="@+id/tvAddToCookList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/imageAddCook"
-                android:layout_marginLeft="7dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginLeft="7dp"
                 android:layout_toEndOf="@+id/imageAddCook"
                 android:layout_toRightOf="@+id/imageAddCook"
                 android:text="Add to cook list"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
 
             <!--Hand cursor-->
             <ImageView
@@ -352,9 +353,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/imageSearchRecipe"
-                app:srcCompat="@drawable/circle"
                 android:layout_marginRight="25dp"
-                android:layout_marginTop="2dp"/>
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/circle" />
 
             <ImageButton
                 android:id="@+id/imageHandCursor"
@@ -363,16 +364,13 @@
                 android:layout_alignBottom="@+id/imageSearchCircle"
                 android:layout_alignLeft="@+id/imageSearchCircle"
                 android:layout_alignStart="@+id/imageSearchCircle"
-                app:srcCompat="@drawable/handcursor"
                 android:layout_marginBottom="9dp"
                 android:layout_marginLeft="8dp"
-                android:background="@android:color/transparent"/>
-
-
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/handcursor" />
 
 
         </RelativeLayout>
-
 
 
     </LinearLayout>

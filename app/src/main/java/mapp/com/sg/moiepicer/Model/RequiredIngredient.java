@@ -9,14 +9,14 @@ import android.os.Parcelable;
 
 public class RequiredIngredient implements Parcelable{
     private Ingredient ingredient;
-    private int amount;
+    private String amount;
     private String Unit;
 
     public Ingredient getIngredient() {
         return ingredient;
     }
 
-    public RequiredIngredient(Ingredient ingredient, int amount, String unit) {
+    public RequiredIngredient(Ingredient ingredient, String amount, String unit) {
         this.ingredient = ingredient;
         this.amount = amount;
         Unit = unit;
@@ -24,7 +24,7 @@ public class RequiredIngredient implements Parcelable{
 
     protected RequiredIngredient(Parcel in) {
         ingredient = in.readParcelable(Ingredient.class.getClassLoader());
-        amount = in.readInt();
+        amount = in.readString();
         Unit = in.readString();
     }
 
@@ -48,12 +48,12 @@ public class RequiredIngredient implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(ingredient, flags);
-        dest.writeInt(amount);
+        dest.writeString(amount);
         dest.writeString(Unit);
     }
 
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 

@@ -19,9 +19,9 @@ public  class DataHelper {
 
 
         Recipe recipe1 = new Recipe("R1","Granny's Steamed Egg","D1","Recipe descriptino.....",100000);
-        requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
-        requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
-        requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
+        requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),"1","unit"));
+        requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),"1","unit"));
+        requiredIngredient1.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),"1","unit"));
         requiredStep1.add(new Step(1,"Step1","Descript ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1",0));
         requiredStep1.add(new Step(2,"Step2","Descript 2",0));
         requiredStep1.add(new Step(3,"Step3","Descript 3",3000));
@@ -35,7 +35,7 @@ public  class DataHelper {
 
 
         Recipe recipe2 = new Recipe("R2","Fried Egg","D2","Recipe descriptino2.....",100000);
-        requiredIngredient2.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
+        requiredIngredient2.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),"1","unit"));
 
         requiredStep2.add(new Step(1,"Fried Egg","Fried egg Descript 1",0));
         recipe2.setRequiredIngredient(requiredIngredient2);

@@ -52,7 +52,7 @@ public class Testing extends AppCompatActivity {
 
                             String unit = childSnapshot.child("Unit").getValue(String.class);
                             Ingredient ingredient = childSnapshot.child("Ingredient").getValue(Ingredient.class);
-                            RequiredIngredient requiredIngredient = new RequiredIngredient(ingredient,Integer.valueOf(amount),unit);
+                            RequiredIngredient requiredIngredient = new RequiredIngredient(ingredient,amount,unit);
                             requiredIngredientArrayList.add(requiredIngredient);
                             Log.i(TAG_TESTING, "Required Ingredient" +
                                                 "\t" +   requiredIngredient.getIngredient().getName() +

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#b50000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF0000</color>
-    <color name="fontColor">#686A6C</color>
+    <color name="fontColor">#686a6c</color>
     <color name="cookColor">#F7F7F7</color>
-    <color name="cookFont">#FF0707</color>
+    <color name="cookFont">#ff0707</color>
 </resources>

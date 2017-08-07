@@ -17,5 +17,27 @@
     <string name="title_activity_recipe_details">RecipeDetails</string>
     <string name="title_activity_cooking">Cooking</string>
     <string name="_2_prepare_the_steampot">2. Prepare the steampot\nPrepare steamer, or for a makeshift one, just set a metal rack over a pot of boiling water, making sure ........</string>
-    <string name="btnAddtoCook">Add to cook </string>>
+    <string name="btnAddtoCook">Add to cook </string>
+    <string-array name="levels">
+        <item>All</item>
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Expert</item>
+    </string-array>
+    <string-array name="cuisine">
+        <item>All</item>
+        <item>Western</item>
+        <item>Chinese</item>
+    </string-array>
+    <string-array name="style">
+        <item>All</item>
+        <item>Fried</item>
+        <item>Steamed</item>
+    </string-array>
+    <string-array name="time">
+        <item>All</item>
+        <item>5 Minutes</item>
+        <item>10 Minutes</item>
+        <item>30 Minutes</item>
+    </string-array>
 </resources>
