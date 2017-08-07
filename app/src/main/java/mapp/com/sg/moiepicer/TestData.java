@@ -68,6 +68,7 @@ public class TestData extends Fragment {
         final Spinner cuisineSpinner = (Spinner) view.findViewById(R.id.cuisineSpinner);
         final Spinner styleSpinner = (Spinner) view.findViewById(R.id.styleSpinner);
         final Spinner timeSpinner = (Spinner) view.findViewById(R.id.timeSpinner);
+        final TextView resultCount = (TextView) view.findViewById(R.id.resultCount);
         final ArrayAdapter<CharSequence> levelAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.levels,android.R.layout.simple_spinner_item);
         final ArrayAdapter<CharSequence> cuisineAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.cuisine,android.R.layout.simple_spinner_item);
         final ArrayAdapter<CharSequence> styleAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.style,android.R.layout.simple_spinner_item);
@@ -158,7 +159,7 @@ public class TestData extends Fragment {
                     toViewList.add(fRecipe);
                 }
                 mAdapter.notifyDataSetChanged();
-
+                resultCount.setText("("+String.valueOf(toViewList.size())+")");
             }
 
             @Override
@@ -179,6 +180,7 @@ public class TestData extends Fragment {
                     }
                 }
                 mAdapter.notifyDataSetChanged();
+                resultCount.setText("("+String.valueOf(toViewList.size())+")");
             }
         });
 
