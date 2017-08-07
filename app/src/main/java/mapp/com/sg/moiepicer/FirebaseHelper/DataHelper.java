@@ -37,7 +37,7 @@ public  class DataHelper {
         Recipe recipe2 = new Recipe("R2","Fried Egg","D2","Recipe descriptino2.....",100000);
         requiredIngredient2.add(new RequiredIngredient(new Ingredient("I1","Egg","Meat"),1,"unit"));
 
-        requiredStep2.add(new Step(1,"Step1","Descript 1",0));
+        requiredStep2.add(new Step(1,"Fried Egg","Fried egg Descript 1",0));
         recipe2.setRequiredIngredient(requiredIngredient2);
         recipe2.setRequiredSteps(requiredStep2);
 

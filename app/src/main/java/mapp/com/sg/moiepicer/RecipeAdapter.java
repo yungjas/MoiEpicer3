@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import mapp.com.sg.moiepicer.Model.Recipe;
@@ -68,6 +70,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+            Glide.with(holder.imageView_recipe.getContext()).load("https://firebasestorage.googleapis.com/v0/b/first-firebase-project-c6d2e.appspot.com/o/steamed_egg_in_earthenware_bow.jpg?alt=media&token=b12165b4-43ac-48ea-a523-6b63eeb1597e")
+                .into(holder.imageView_recipe);
         Recipe recipe =  mDataset.get(position);
         holder.tvRecipeName.setText(recipe.getName());
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {

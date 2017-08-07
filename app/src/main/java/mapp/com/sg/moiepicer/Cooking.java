@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.SystemClock;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
@@ -26,13 +26,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Chronometer;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +51,8 @@ import mapp.com.sg.moiepicer.Model.RequiredIngredient;
 import mapp.com.sg.moiepicer.Model.Step;
 
 public class Cooking extends AppCompatActivity {
+    private static final  int MILIS_SECONS =1000;
+    private static final int MILIS_MINUS=60000;
     private static final String TAG_RECIPE = "RECIPE";
     private ArrayList<Recipe> mToCookList;
     private ArrayList<Step> mRequiredStep;
@@ -59,12 +63,13 @@ public class Cooking extends AppCompatActivity {
     private ConstraintLayout timerViewGroup;
     private ScrollView scrollView;
     private ImageButton btn_DoneCooking, btnStepGuide, btn_NextStep, btn_PreviousStep, btn_timer;
+    private ImageView imageView_Recipe;
     private RecyclerView rv_steps_drawer;
     private TextView tvStepDescription_Cooking,
             tvStepTitle,
             tvCurrentStepSeq,
             tvTotalStep;
-
+    private ProgressBar progressBarTimer;
     private TextView chronometer_timer;
 
     private Step currentStep;
@@ -103,47 +108,40 @@ public class Cooking extends AppCompatActivity {
 
         initialUI();
 
-        //StepRecycleView
-
         //setupRecycleView
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv_steps_drawer.setLayoutManager(llm);
         StepAdapter adapter = new StepAdapter(mRequiredStep);
         rv_steps_drawer.setAdapter(adapter);
-//        rv_steps_drawer.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-//            @Override
-//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-//                View child = rv.findChildViewUnder(e.getX(), e.getY());
-//                int index = rv.getChildAdapterPosition(child);
-//                if (index != -1) {
-//                    stepIndex = index;
-//                    currentStep = mRequiredStep.get(stepIndex);
-//                    updateUI();
-//                    child.getParent().requestDisallowInterceptTouchEvent(true);
-//                    drawerLayout.closeDrawers();
-//                }
-//                return true;
-//            }
-//
-//            @Override
-//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//
-//            }
-//        });
+        rv_steps_drawer.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                View child = rv.findChildViewUnder(e.getX(), e.getY());
+                int index = rv.getChildAdapterPosition(child);
+                if (index != -1) {
+                    stepIndex = index;
+                    currentStep = mRequiredStep.get(stepIndex);
+                    updateUI();
+                    child.getParent().requestDisallowInterceptTouchEvent(true);
+                    drawerLayout.closeDrawers();
+                }
+                return true;
+            }
 
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            }
+        });
         adapter.setDataSet(mRequiredStep);
-
-
         //UpdateUI
         updateUI();
     }
-
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -176,6 +174,8 @@ public class Cooking extends AppCompatActivity {
         btnStepGuide = (ImageButton) findViewById(R.id.btnStepGuide);
         btn_timer = (ImageButton) findViewById(R.id.btn_timer_cooking);
         chronometer_timer = (TextView) findViewById((R.id.chronometer_cooking));
+        imageView_Recipe = (ImageView) findViewById(R.id.imageRecipeCook);
+        progressBarTimer = (ProgressBar) findViewById(R.id.progressbar_remaingTime_Cooking);
 
         //step spinner
         spToCookList = (Spinner) findViewById(R.id.spinnerCookRecipe);
@@ -183,9 +183,15 @@ public class Cooking extends AppCompatActivity {
         spToCookList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 currentRecipe = ((Recipe) parent.getItemAtPosition(position));
+                mRequiredStep = currentRecipe.getRequiredSteps();
+                stepIndex=0;
+                currentStep=mRequiredStep.get(0);
                 tvRecipeName.setText(currentRecipe.getName());
+                tvTotalStep.setText(String.valueOf(mRequiredStep.size()));
                 ((StepAdapter) rv_steps_drawer.getAdapter()).setDataSet(currentRecipe.getRequiredSteps());
+                updateUI();
 
             }
 
@@ -224,14 +230,14 @@ public class Cooking extends AppCompatActivity {
         btn_NextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (stepIndex == mRequiredStep.size() - 1) {
+                if (stepIndex == currentRecipe.getRequiredSteps().size() - 1) {
 //                    Toast.makeText(Cooking.this,"You reach the last step",Toast.LENGTH_SHORT).show();
                     Snackbar.make(Cooking.this.getWindow().getDecorView().findViewById(android.R.id.content), "Reach last step", 500).show();
 
                 } else {
-
                     stepIndex++;
-                    currentStep = mRequiredStep.get(stepIndex);
+                    currentStep =  currentRecipe.getRequiredSteps().get(stepIndex);
+
                     scrollView.smoothScrollTo(0, 0);
                     updateUI();
                 }
@@ -270,16 +276,29 @@ public class Cooking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final long startTime = System.currentTimeMillis();
-                CountDownTimer elapsedTimer = new CountDownTimer(10000, 1000) {
+                CountDownTimer elapsedTimer = new CountDownTimer(currentStep.getTime(), 1000) {
                     @Override
                     public void onTick(long l) {
-                        long elapsedTime = l / 1000;
-                        chronometer_timer.setText(String.format("%02d", elapsedTime));
+                        long minutes=l/MILIS_MINUS;
+                        long second = (l%MILIS_MINUS) / 1000;
+                        progressBarTimer.setProgress(progressBarTimer.getProgress()+1000);
+                        chronometer_timer.setText(String.format("%02d m:%02d s", minutes,second));
                     }
 
                     @Override
                     public void onFinish() {
                         chronometer_timer.setText("Finished");
+                        final Vibrator vibrator = (Vibrator) Cooking.this.getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        vibrator.vibrate(new long[]{0, 1000, 10}, 0);
+                        btn_timer.setImageResource(R.drawable.pausebtn);
+                        btn_timer.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                vibrator.cancel();
+                                btn_timer.setImageResource(R.drawable.startbtn);
+                            }
+                        });
                         Toast.makeText(Cooking.this.getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
                     }
                 }.start();
@@ -302,16 +321,23 @@ public class Cooking extends AppCompatActivity {
     private void updateUI() {
 
         tvRecipeName.setText(currentRecipe.getName());
+        ((StepAdapter)rv_steps_drawer.getAdapter()).setDataSet(currentRecipe.getRequiredSteps());
         tvStepDescription_Cooking.setText(currentStep.getDescription());
         tvStepTitle.setText(currentStep.getName());
         tvCurrentStepSeq.setText(String.valueOf(stepIndex + 1));
-        tvTotalStep.setText(String.valueOf(mRequiredStep.size()));
+        if (stepIndex == 0) {
+            imageView_Recipe.setVisibility(View.VISIBLE);
+            Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/first-firebase-project-c6d2e.appspot.com/o/steamed_egg_in_earthenware_bow.jpg?alt=media&token=b12165b4-43ac-48ea-a523-6b63eeb1597e")
+                    .into(imageView_Recipe);
+        } else {
+            imageView_Recipe.setVisibility(View.GONE);
+        }
         if (currentStep.getTime() <= 1000) {
             timerViewGroup.setVisibility(View.GONE);
 
         } else {
             timerViewGroup.setVisibility(View.VISIBLE);
-
+            progressBarTimer.setMax(currentStep.getTime());
 
         }
     }
@@ -354,7 +380,6 @@ public class Cooking extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                                     String amount = childSnapshot.child("Amount").getValue(String.class);
-
                                     String unit = childSnapshot.child("Unit").getValue(String.class);
                                     Ingredient ingredient = childSnapshot.child("Ingredient").getValue(Ingredient.class);
                                     RequiredIngredient requiredIngredient = new RequiredIngredient(ingredient, Integer.valueOf(amount), unit);
@@ -419,5 +444,10 @@ public class Cooking extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Vibrator vibrator = (Vibrator) Cooking.this.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.cancel();
+    }
 }

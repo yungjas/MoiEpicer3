@@ -21,12 +21,12 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_toCookList"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignLeft="@+id/btn_startCooking"
         android:layout_alignStart="@+id/btn_startCooking"
         android:layout_below="@+id/btn_startCooking"
-        />
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

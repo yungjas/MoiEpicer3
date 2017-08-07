@@ -47,7 +47,7 @@ public class Home extends AppCompatActivity {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 //            }
-//        });
+//        });`
         //Get all view
         recyclerView = (RecyclerView) findViewById(R.id.rv_toCookList);
         btnStartCooking = (ImageButton) findViewById(R.id.btn_startCooking);

@@ -39,7 +39,23 @@ public class LoadingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+        mRequiredStepRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Step> steps = new ArrayList<Step>();
+                for(DataSnapshot child:dataSnapshot.getChildren()){
+                    Step step;
+                    step = dataSnapshot.getValue(Step.class);
+                    steps.add(step);
+                }
 
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 //        int count =1;
 //        while(true){

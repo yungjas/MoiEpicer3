@@ -22,6 +22,7 @@ public class Settings extends AppCompatActivity {
 
         //Set up the title
         getSupportActionBar().setTitle("Settings");
+
     }
 
     @Override
