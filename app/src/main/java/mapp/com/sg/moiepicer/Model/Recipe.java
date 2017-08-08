@@ -23,18 +23,25 @@ public class Recipe implements Parcelable {
     }
 
     private String description;
+    private String style;
+    private String cuisine;
+    private String level;
     private int duration;
     private ArrayList<Step> requiredSteps=null;
     private ArrayList<RequiredIngredient> requiredIngredient=null;
 
     public Recipe() {
     }
+    //Need to change for main program
 
-    public Recipe(String uID, String name, String dish, String description, int duration) {
+    public Recipe(String uID, String name, String dish, String description, String style, String cuisine, String level, int duration) {
         this.uID=uID;
         this.name = name;
         this.dish = dish;
         this.description = description;
+        this.style = style;
+        this.cuisine = cuisine;
+        this.level = level;
         this.duration = duration;
     }
 
@@ -43,6 +50,9 @@ public class Recipe implements Parcelable {
         this.name = recipe.getName();
         this.dish = recipe.getDish();
         this.description = recipe.getDescription();
+        this.style = recipe.getStyle();
+        this.cuisine = recipe.getCuisine();
+        this.level = recipe.getLevel();
         this.url = recipe.getUrl();
         this.duration = recipe.getDuration();
         this.requiredIngredient = requiredIngredient;
@@ -54,6 +64,9 @@ public class Recipe implements Parcelable {
         name = in.readString();
         dish = in.readString();
         description = in.readString();
+        style = in.readString();
+        cuisine = in.readString();
+        level = in.readString();
         url=in.readString();
         duration = in.readInt();
         requiredSteps=new ArrayList<Step>();
@@ -106,6 +119,30 @@ public class Recipe implements Parcelable {
         this.description = description;
     }
 
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getCuisine() {
+        return cuisine;
+    }
+
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     public int getDuration() {
         return duration;
     }
@@ -125,10 +162,14 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeString(dish);
         dest.writeString(description);
+        dest.writeString(style);
+        dest.writeString(cuisine);
+        dest.writeString(level);
         dest.writeString(url);
         dest.writeInt(duration);
         dest.writeList(requiredSteps);
         dest.writeList(requiredIngredient);
+
 
     }
 

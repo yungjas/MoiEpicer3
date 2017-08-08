@@ -27,7 +27,10 @@ import java.util.ArrayList;
 import mapp.com.sg.moiepicer.Model.Recipe;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String TOCOOKLIST = "TOCOOKLIST";
+    public static final String RECIPE = "RECIPE";
+    public static final String TAG = "MOI_EPICER";
+    public static final String TAG_TESTING = "TESTING";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.i("TEsting", "Page selected" + position);
+                Log.i(TAG, "Page selected" + position);
                 switch (position) {
                     case 0:
                         Log.i("TEsting", "case 1");

@@ -25,6 +25,7 @@ import mapp.com.sg.moiepicer.Model.Recipe;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     private ArrayList<Recipe> mDataset;
+
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -33,7 +34,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         protected TextView tvRecipeName;
         protected ImageView imageView_recipe;
         protected ImageButton btn_StartCooking;
-        protected  Button btn_delete;
+        protected Button btn_delete;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -65,15 +66,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
 
-
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        Recipe recipe =  mDataset.get(position);
-        if(recipe.getUrl()!=null){
+        Recipe recipe = mDataset.get(position);
+        if (recipe.getUrl() != null) {
             Glide.with(holder.imageView_recipe.getContext()).load(recipe.getUrl())
                     .into(holder.imageView_recipe);
         }
@@ -82,28 +82,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                Recipe removedRecipe= mDataset.remove(position);
+                Recipe removedRecipe = mDataset.remove(position);
                 RecipeAdapter.this.notifyDataSetChanged();
-                Toast.makeText(v.getContext() ,"Removed Recipe: " +removedRecipe.getName() , Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Removed Recipe: " + removedRecipe.getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        holder.imageView_recipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Recipe getRecipe = mDataset.get(position);
-                RecipeAdapter.this.notifyDataSetChanged();
-
-                final Intent intent;
-                intent = new Intent(holder.imageView_recipe.getContext(),RecipeDetails.class);
-
-                holder.imageView_recipe.getContext().startActivity(intent);
-            }
-        });
-
-
-
-
+        holder.imageView_recipe.setOnClickListener(new RecipeOnClickListener(recipe, mDataset));
 
 
 //        holder.imageView_recipe.setImageResource(/*set something */);
@@ -116,9 +101,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         return mDataset.size();
     }
 
-    public  void setmDataset(ArrayList<Recipe> toCookList){
-        Log.i("TEsting","DataChanged");
-        mDataset =toCookList;
+    public void setmDataset(ArrayList<Recipe> toCookList) {
+        Log.i("TEsting", "DataChanged");
+        mDataset = toCookList;
         notifyDataSetChanged();
     }
 }

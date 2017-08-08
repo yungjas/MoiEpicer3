@@ -86,18 +86,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         if(!recipe.getUrl().isEmpty())
         Glide.with(holder.imageView_recipe.getContext()).load(recipe.getUrl()).into(holder.imageView_recipe);
 
-        holder.imageView_recipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Recipe getRecipe = mDataset.get(position);
-                SearchAdapter.this.notifyDataSetChanged();
-
-                final Intent intent;
-                intent = new Intent(holder.imageView_recipe.getContext(),RecipeDetails.class);
-
-                holder.imageView_recipe.getContext().startActivity(intent);
-            }
-        })  ;
+        holder.imageView_recipe.setOnClickListener(new RecipeOnClickListener(recipe,toCookList));
 
 
 

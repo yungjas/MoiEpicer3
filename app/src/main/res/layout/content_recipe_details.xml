@@ -126,59 +126,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageWarning"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/warning"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="13dp"/>
-
-            <TextView
-                android:id="@+id/tvContain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Contain avoided ingredient"
-                android:textColor="#FF0000"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="17dp"/>
-
-            <TextView
-                android:id="@+id/tvContainNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="(1)"
-                android:textColor="#FF0000"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="17dp"/>
-
             <!--Remove recipe-->
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/removerecipebtn"
-                android:background="@android:color/transparent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="9dp"/>
-
-
 
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvDetailRec1"
+            android:id="@+id/tvRecipeName_RecipeDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recipe 1"
-            android:textSize="22dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:text="Recipe 1"
+            android:textSize="22dp" />
 
         <!--Experience, time, cuisine and cooking type-->
         <RelativeLayout
@@ -194,7 +154,7 @@
                 android:layout_marginTop="20dp"/>
 
             <TextView
-                android:id="@+id/tvDetailsCat"
+                android:id="@+id/tv_level_RecipeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Beginner"
@@ -212,13 +172,13 @@
                 android:layout_marginLeft="10dp"/>
 
             <TextView
-                android:id="@+id/tvDetailsTime"
+                android:id="@+id/tv_TImer_RecipeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Textview"
-                android:layout_marginTop="63dp"
                 android:layout_marginLeft="37dp"
-                android:textColor="#7A7373"/>
+                android:layout_marginTop="63dp"
+                android:text="Textview"
+                android:textColor="#7A7373" />
 
             <ImageView
                 android:id="@+id/imageDetailsCuisine"
@@ -229,13 +189,15 @@
                 android:layout_marginTop="21dp"/>
 
             <TextView
-                android:id="@+id/tvDetailsCuisine"
+                android:id="@+id/tv_Cusine_RecipeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chinese"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="200dp"
-                android:textColor="#7A7373"/>
+                android:textColor="#7A7373"
+                android:layout_alignBaseline="@+id/tv_level_RecipeDetail"
+                android:layout_alignBottom="@+id/tv_level_RecipeDetail"
+                android:layout_alignLeft="@+id/tv_Style_RecipeDetail"
+                android:layout_alignStart="@+id/tv_Style_RecipeDetail" />
 
             <ImageView
                 android:id="@+id/imageDetailsCook"
@@ -246,7 +208,7 @@
                 android:layout_marginTop="60dp"/>
 
             <TextView
-                android:id="@+id/tvDetailsCook"
+                android:id="@+id/tv_Style_RecipeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Steamed"
@@ -282,7 +244,7 @@
                 android:textColor="#000000"/>
 
             <TextView
-                android:id="@+id/tvDetailsDesc"
+                android:id="@+id/tv_Description_RecipeDetail"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="This is my granny’s recipe for a traditional steamed eggs."
@@ -304,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/imageDetailsNote"
                 android:layout_alignStart="@+id/imageDetailsNote"
-                android:layout_alignTop="@+id/tvDetailsDesc"
+                android:layout_alignTop="@+id/tv_Description_RecipeDetail"
                 android:layout_marginLeft="18dp"
                 android:layout_marginStart="18dp"
                 android:text="Notes"
@@ -404,27 +366,9 @@
                 android:textColor="#FF0000"/>-->
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_Ingredients_RecipeDetail"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rv_ingredients">
-            </android.support.v7.widget.RecyclerView>
-
-            <ImageView
-                android:id="@+id/imageDetailsWarning"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/warning"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="240dp"/>
-
-            <TextView
-                android:id="@+id/tvDetailsAvoided"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Avoided"
-                android:textColor="#FF0000"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="270dp"/>
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>
 
@@ -581,7 +525,7 @@
                 android:layout_marginRight="7dp"/>-->
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_steps"
+                android:id="@+id/rv_steps_RecipeDetail"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvStepDetails"

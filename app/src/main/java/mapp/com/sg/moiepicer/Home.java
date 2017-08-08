@@ -77,9 +77,7 @@ public class Home extends Fragment {
             public void onClick(View v) {
                 if(toCookList!=null&&toCookList.size()!=0){
                     Intent intent = new Intent(view.getContext(), Cooking.class);
-                    Bundle b = new Bundle();
-                    b.putParcelableArrayList(TOCOOKLIST, Home.this.toCookList);
-                    intent.putExtra("bundle", b);
+                    intent.putParcelableArrayListExtra(MainActivity.TOCOOKLIST,toCookList);
                     Home.this.startActivity(intent);
                 }else{
                     Toast.makeText(getContext(), "Please procedd search to add recipe", Toast.LENGTH_SHORT).show();
