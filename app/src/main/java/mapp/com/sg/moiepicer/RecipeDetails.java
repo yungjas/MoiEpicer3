@@ -1,6 +1,7 @@
 package mapp.com.sg.moiepicer;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
@@ -23,6 +27,7 @@ import mapp.com.sg.moiepicer.Model.Step;
 public class RecipeDetails extends AppCompatActivity {
     private TextView tvRecipeName, tvLevel, tvTime, tvCuisine, tvStyle, tvDescription;
     private EditText editTextNotes;
+    private ImageView imageViewRecipe;
     private RecyclerView rv_Step, rv_Ingredient;
     private ArrayList<Recipe> toCookList;
     private Recipe displayedRecipe;
@@ -72,6 +77,7 @@ public class RecipeDetails extends AppCompatActivity {
 
         //inti ui
         tvRecipeName = (TextView) findViewById(R.id.tvRecipeName_RecipeDetail);
+        imageViewRecipe =(ImageView) findViewById(R.id.iv_Recipe_RecipeDetail);
         tvLevel = (TextView) findViewById(R.id.tv_level_RecipeDetail);
         tvCuisine = (TextView) findViewById(R.id.tv_Cusine_RecipeDetail);
         tvStyle = (TextView) findViewById(R.id.tv_Style_RecipeDetail);
@@ -92,7 +98,12 @@ public class RecipeDetails extends AppCompatActivity {
         if (time == 0) {
             tvTime.setText("None Available");
         } else {
-            tvTime.setText(String.format("%02d m:%02d s", time / 60000, (time % 60000) / 1000));
+            tvTime.setText(String.format("%02dm%02d s", time / 60000, (time % 60000) / 1000));
+        }
+
+        String url = displayedRecipe.getUrl();
+        if(!(url.isEmpty()||url==null)){
+            Glide.with(this.getApplicationContext()).load(url).into(imageViewRecipe);
         }
 
 //        tvLevel.setText(displayedRecipe.getLevel());

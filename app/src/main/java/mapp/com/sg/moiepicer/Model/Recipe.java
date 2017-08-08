@@ -44,7 +44,13 @@ public class Recipe implements Parcelable {
         this.level = level;
         this.duration = duration;
     }
-
+    public Recipe(String uID,String name, String dish, String description,int duration ){
+        this.uID = uID;
+        this.name = name;
+        this.dish =dish;
+        this.description = description;
+        this.duration = duration;
+    }
     public Recipe(Recipe recipe, ArrayList<RequiredIngredient> requiredIngredient, ArrayList<Step> requiredSteps) {
         this.uID = recipe.getUID();
         this.name = recipe.getName();
@@ -96,6 +102,7 @@ public class Recipe implements Parcelable {
     }
 
     public String getName() {
+
         return name;
     }
 

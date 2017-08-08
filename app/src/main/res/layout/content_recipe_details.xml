@@ -15,11 +15,11 @@
 
         <!--Recipe image-->
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/iv_Recipe_RecipeDetail"
             android:layout_width="360dp"
             android:layout_height="172dp"
-            app:srcCompat="@android:drawable/btn_star"
-            android:background="@android:color/darker_gray"/>
+            android:background="@android:color/darker_gray"
+            app:srcCompat="@android:drawable/btn_star" />
 
         <!--Fav, Edit, Add-->
         <LinearLayout
