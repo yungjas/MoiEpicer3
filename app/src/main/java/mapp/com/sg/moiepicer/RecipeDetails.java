@@ -78,6 +78,7 @@ public class RecipeDetails extends AppCompatActivity {
         //inti ui
         tvRecipeName = (TextView) findViewById(R.id.tvRecipeName_RecipeDetail);
         imageViewRecipe =(ImageView) findViewById(R.id.iv_Recipe_RecipeDetail);
+        editTextNotes =(EditText) findViewById(R.id.et_Note_RecipeDetail);
         tvLevel = (TextView) findViewById(R.id.tv_level_RecipeDetail);
         tvCuisine = (TextView) findViewById(R.id.tv_Cusine_RecipeDetail);
         tvStyle = (TextView) findViewById(R.id.tv_Style_RecipeDetail);
@@ -105,21 +106,23 @@ public class RecipeDetails extends AppCompatActivity {
         if(!(url.isEmpty()||url==null)){
             Glide.with(this.getApplicationContext()).load(url).into(imageViewRecipe);
         }
-
-//        tvLevel.setText(displayedRecipe.getLevel());
-//        tvStyle.setText(displayedRecipe.getStyle());
-//        tvCuisine.setText(displayedRecipe.getCuisine());
+        editTextNotes.setSelected(false);
+        tvLevel.setText(displayedRecipe.getLevel());
+        tvStyle.setText(displayedRecipe.getStyle());
+        tvCuisine.setText(displayedRecipe.getCuisine());
 
         //Ingredients
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager llmIngredient = new LinearLayoutManager(this);
+        llmIngredient.setOrientation(LinearLayoutManager.VERTICAL);
         IngredientAdaptor ingredientAdapter = new IngredientAdaptor(ingredientList);
-        rv_Ingredient.setLayoutManager(llm);
+        rv_Ingredient.setLayoutManager(llmIngredient);
         rv_Ingredient.setAdapter(ingredientAdapter);
 
         //Steps
+        LinearLayoutManager llmStep = new LinearLayoutManager(this);
+        llmStep.setOrientation(LinearLayoutManager.VERTICAL);
         StepAdapter stepAdapter = new StepAdapter(stepList);
-        rv_Ingredient.setLayoutManager(llm);
+        rv_Step.setLayoutManager(llmStep);
         rv_Step.setAdapter(stepAdapter);
 
 

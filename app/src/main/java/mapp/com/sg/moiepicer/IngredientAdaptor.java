@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import mapp.com.sg.moiepicer.Model.Ingredient;
 import mapp.com.sg.moiepicer.Model.RequiredIngredient;
 
 /**
@@ -21,13 +20,13 @@ public class IngredientAdaptor extends RecyclerView.Adapter<IngredientAdaptor.Vi
 
     public  static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        protected TextView tvIngreName,tvIngreUnit, tvIngreType;
+        protected TextView tvIngreName, tvIngreQuantity, tvIngreUnit;
         public ViewHolder(final View itemView) {
             super(itemView);
 
-            tvIngreName = (TextView) itemView.findViewById(R.id.tvIngredientName);
-            tvIngreUnit = (TextView) itemView.findViewById(R.id.tvIngredientUnit);
-            tvIngreType = (TextView) itemView.findViewById(R.id.tvIngredientType);
+            tvIngreName = (TextView) itemView.findViewById(R.id.tv_IngredientName_RecipeDetail_Item);
+            tvIngreQuantity = (TextView) itemView.findViewById(R.id.tv_IngredientQuantity_RecipeDetail_item);
+            tvIngreUnit = (TextView) itemView.findViewById(R.id.tv_ingredientUnit_RecipeDetail_Item);
         }
     }
 
@@ -47,8 +46,8 @@ public class IngredientAdaptor extends RecyclerView.Adapter<IngredientAdaptor.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         RequiredIngredient ingredient = mDataset.get(position);
         holder.tvIngreName.setText(ingredient.getIngredient().getName());
+        holder.tvIngreQuantity.setText(String.valueOf(ingredient.getAmount()));
         holder.tvIngreUnit.setText(ingredient.getUnit());
-        holder.tvIngreType.setText(ingredient.getIngredient().getType());
     }
 
     @Override

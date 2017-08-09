@@ -310,8 +310,7 @@ public class Cooking extends AppCompatActivity {
     private void initialData() {
         //Get the to cookList from the previous actitvity
         Intent inten = this.getIntent();
-        Bundle b = inten.getBundleExtra("bundle");
-        mToCookList = b.getParcelableArrayList(Home.TOCOOKLIST);
+        mToCookList=inten.getParcelableArrayListExtra(MainActivity.TOCOOKLIST);
     }
 
     private void updateUI() {
